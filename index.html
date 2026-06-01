@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Nexora | Executive Opportunity & Strategy Tracker</title>
+    <title>Nexora | Strategy & Product Hub Lahore</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -142,8 +142,8 @@
             margin-bottom: 1.5rem;
         }
         @media (min-width: 768px) {
-            .form-grid { grid-template-columns: 2fr 1fr 2fr; }
-            .full-width-field { grid-column: span 3; }
+            .form-grid { grid-template-columns: 2fr 1fr 1fr 2fr; }
+            .full-width-field { grid-column: span 4; }
         }
         .input-group label {
             display: block;
@@ -235,7 +235,7 @@
             .search-box { width: 300px; }
         }
 
-        /* Responsive Grid Cards Layout */
+        /* Grid Layout */
         .companies-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -257,7 +257,10 @@
         .card-content { padding: 1.5rem; }
         
         .card-meta-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
-        .company-name { font-size: 1.25rem; font-weight: 700; color: #0f172a; letter-spacing: -0.3px; }
+        .company-name { font-size: 1.25rem; font-weight: 700; color: #0f172a; letter-spacing: -0.3px; line-height: 1.3; }
+        
+        .rank-badge { font-size: 0.7rem; font-weight: 700; color: var(--primary-light); background: #f0f7fc; padding: 0.2rem 0.5rem; border-radius: 8px; margin-bottom: 0.4rem; display: inline-block; }
+        .location-tag { font-size: 0.75rem; color: var(--text-muted); font-weight: 500; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 4px; }
         
         .type-badge {
             font-size: 0.65rem;
@@ -306,8 +309,8 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1><i class="fas fa-crosshairs"></i> Nexora Blueprint Ecosystem</h1>
-        <p>Corporate Strategy · Management Consulting · Digital Products · APM Hub</p>
+        <h1><i class="fas fa-crosshairs"></i> Nexora Lahore Matrix</h1>
+        <p>Corporate Strategy · Advisory · Core Product Hub</p>
     </div>
 
     <div class="dashboard-stats">
@@ -315,52 +318,56 @@
             <div class="stat-icon total"><i class="fas fa-building-user"></i></div>
             <div>
                 <div class="stat-val" id="metricTotal">0</div>
-                <div class="stat-lbl">Total Pipeline</div>
+                <div class="stat-lbl">Total Base</div>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon consulting"><i class="fas fa-bezier-curve"></i></div>
             <div>
                 <div class="stat-val" id="metricConsulting">0</div>
-                <div class="stat-lbl">Strategy & Advisory</div>
+                <div class="stat-lbl">Consulting Vector</div>
             </div>
         </div>
         <div class="stat-card">
             <div class="stat-icon product"><i class="fas fa-cubes"></i></div>
             <div>
                 <div class="stat-val" id="metricProduct">0</div>
-                <div class="stat-lbl">Tech & Product Systems</div>
+                <div class="stat-lbl">Product Elite</div>
             </div>
         </div>
     </div>
 
     <div class="tabs">
-        <button class="tab-btn active" data-tab="companies"><i class="fas fa-layer-group"></i> Pipeline Manager</button>
-        <button class="tab-btn" data-tab="opportunity"><i class="fas fa-bolt"></i> Live Intelligence View</button>
+        <button class="tab-btn active" data-tab="companies"><i class="fas fa-layer-group"></i> Local Operations Array</button>
+        <button class="tab-btn" data-tab="opportunity"><i class="fas fa-bolt"></i> Surveillance Stream</button>
     </div>
 
     <div id="companiesTab" class="tab-pane active-pane">
         <div class="form-card">
-            <div class="form-title"><i class="fas fa-circle-plus" id="formIcon"></i><span id="formTitleText">Inject Target Node</span></div>
+            <div class="form-title"><i class="fas fa-circle-plus" id="formIcon"></i><span id="formTitleText">Inject New Corporate Asset</span></div>
             <div class="form-grid">
                 <div class="input-group">
-                    <label>Enterprise Entity Name *</label>
-                    <input type="text" id="compName" placeholder="e.g., McKinsey, Systems Limited">
+                    <label>Company Entity Name *</label>
+                    <input type="text" id="compName" placeholder="e.g., PwC, Motive">
                 </div>
                 <div class="input-group">
-                    <label>Ecosystem Domain Class *</label>
+                    <label>Ecosystem Domain *</label>
                     <select id="compType">
-                        <option value="Consulting">Strategy & Consulting</option>
-                        <option value="Product">Product & Technology</option>
+                        <option value="Consulting">Consulting & Advisory</option>
+                        <option value="Product">Product & Tech Systems</option>
                     </select>
                 </div>
                 <div class="input-group">
-                    <label>Strategic Recruitment Ecosystem URL *</label>
+                    <label>Lahore Hub Location</label>
+                    <input type="text" id="compLocation" placeholder="e.g., Gulberg III, DHA Phase 5">
+                </div>
+                <div class="input-group">
+                    <label>Strategic Recruitment URL *</label>
                     <input type="url" id="compUrl" placeholder="https://...">
                 </div>
                 <div class="input-group full-width-field">
-                    <label>Strategic Objective / APM Pipeline Thesis / Mandate Rationale</label>
-                    <textarea id="compDesc" rows="2" placeholder="Detail high-level product strategy alignment or explicit entry schemes."></textarea>
+                    <label>Strategic Objective / Thesis Rationale</label>
+                    <textarea id="compDesc" rows="2" placeholder="Define core specialization, model frameworks, or active APM entry track details."></textarea>
                 </div>
             </div>
             <div class="btn-group">
@@ -384,7 +391,7 @@
         </div>
 
         <div id="companiesListContainer" class="companies-grid">
-            <div class="empty-state">Constructing structural mapping matrix...</div>
+            <div class="empty-state">Structuring system matrix...</div>
         </div>
     </div>
 
@@ -393,7 +400,7 @@
             <div style="font-weight: 700; color: var(--primary); font-size: 1rem;"><i class="fas fa-arrow-trend-up"></i> Executive Surveillance Array</div>
             <div class="search-box">
                 <i class="fas fa-magnifying-glass"></i>
-                <input type="text" id="searchOppInput" placeholder="Filter live streams...">
+                <input type="text" id="searchOppInput" placeholder="Filter live stream...">
                 <i class="fas fa-circle-xmark" id="clearOppSearch" style="cursor:pointer; color: var(--text-muted);"></i>
             </div>
         </div>
@@ -401,36 +408,46 @@
     </div>
 
     <footer>
-        <i class="fas fa-shield-halved"></i> Engine Core: HTML5 LocalStorage Sandbox | Active Footprint: 23 Strategic Seed Matrices Pre-Loaded
+        <i class="fas fa-shield-halved"></i> Engine Core: LocalStorage Core Sandbox | 30 Top-Tier Lahore Operations Embedded
     </footer>
 </div>
 
 <script>
-    // ----- ADVANCED COMPREHENSIVE SEED MATRIX DATA -----
+    // ----- DATA INJECTION MATRIX (Top 15 Consulting, Top 15 Product) -----
     const SEED_COMPANIES = [
-        { id: 1, name: "EY Pakistan", type: "Consulting", description: "Big 4 premium consulting hub. Target strategic business advisory, transactional risk parameters, and elite corporate advisory programs.", url: "https://www.ey.com/en_pk/careers" },
-        { id: 2, name: "Abacus Consulting", type: "Consulting", description: "Largest tier-1 local operational and technology consulting infrastructure in Pakistan. Focus heavily on Enterprise Risk and Management Operations.", url: "https://www.abacus-global.com/careers" },
-        { id: 3, name: "PwC Pakistan", type: "Consulting", description: "Elite institutional advisory framework. Pivotal for tracking strategic micro-insights, risk execution, and digital transformation consulting programs.", url: "https://www.pwc.com.pk/en/careers.html" },
-        { id: 4, name: "Deloitte Pakistan", type: "Consulting", description: "Global systems advisory asset. Key interface for structural strategy pipelines and enterprise system health consultations.", url: "https://www2.deloitte.com/pk/en/careers/careers.html" },
-        { id: 5, name: "KPMG Pakistan", type: "Consulting", description: "Targeted technological risk models, internal control structures, and specialized graduate tracks optimized for structured corporate problem solvers.", url: "https://kpmg.com/pk/en/home/careers.html" },
-        { id: 6, name: "Accenture", type: "Consulting", description: "Global archetype of systemic IT strategy, structural technological transformations, and elite product management deployments.", url: "https://www.accenture.com/us-en/careers" },
-        { id: 7, name: "Arthur D. Little", type: "Consulting", description: "The premier nexus of pure digital strategy and high-stakes technological transformation consultation. Tailored for absolute strategic operators.", url: "https://www.adlittle.com/en/careers" },
-        { id: 8, name: "McKinsey & Company", type: "Consulting", description: "Global absolute echelon of corporate policy, executive strategic execution, and specialized digital venture operations.", url: "https://www.mckinsey.com/careers/home" },
-        { id: 9, name: "Boston Consulting Group", type: "Consulting", description: "BCG Platinion framework architecture. Tailored vector targeting high-profile product innovation and core business model definitions.", url: "https://www.bcg.com/careers/default.aspx" },
-        { id: 10, name: "Systems Limited", type: "Product", description: "Premier IT export powerhouse and digital ecosystem architect. Direct entry tracking for premium Associate Product Owner positions.", url: "https://www.systemsltd.com/careers" },
-        { id: 11, name: "Netsol Technologies", type: "Product", description: "Global standard asset for premium asset finance systems. Highly optimized for high-end product management frameworks and structural business transformations.", url: "https://www.netsoltech.com/careers" },
-        { id: 12, name: "10Pearls", type: "Product", description: "Elite agile development and digital product design firm. Targets high-velocity digital product consulting and lean product management models.", url: "https://10pearls.com/careers/" },
-        { id: 13, name: "Dubizzle Labs", type: "Product", description: "Highly advanced regional consumer product house. Prominent vector for specialized, elite structured APM lifecycle entry tracks.", url: "https://www.dubizzlelabs.com/careers" },
-        { id: 14, name: "PakWheels", type: "Product", description: "Automotive high-traffic monetization ecosystem. High data volume context, pristine domain for localized Product management deployment.", url: "https://www.pakwheels.com/jobs/" },
-        { id: 15, name: "Foodpanda Pakistan", type: "Product", description: "Hyper-velocity logistical tech grid. Features highly demanding structural targets for elite operational and product strategy tracks.", url: "https://careers.foodpanda.com/" },
-        { id: 16, name: "Careem", type: "Product", description: "The definitive regional ride-hailing and super-app engine. Outstanding benchmark framework for technical APM tracks.", url: "https://www.careem.com/careers/" },
-        { id: 17, name: "Bykea", type: "Product", description: "Hyper-localized on-demand logistics ecosystem. High-yield environment for complex technical optimization and Product Analysts.", url: "https://bykea.com/careers/" },
-        { id: 18, name: "Retailo", type: "Product", description: "B2B digital inventory distribution network. High-scale supply-chain infrastructure engineering tailored for enterprise product operators.", url: "https://retailo.co/careers/" },
-        { id: 19, name: "Jazz (Mobilink)", type: "Product", description: "Telecommunications and digital financial banking monolith (JazzCash). Exceptional target for macro product scaling matrices.", url: "https://jobs.jazz.com.pk/" },
-        { id: 20, name: "Tazah Technologies", type: "Product", description: "Agri-tech supply infrastructure architecture. High focus on specialized B2B transaction models and product line operations.", url: "https://www.tazah.co/" },
-        { id: 21, name: "Maqsad", type: "Product", description: "High-engagement digital EdTech platform. Pristine dynamic ecosystem optimized for fast-paced growth track APM roles.", url: "https://maqsad.io/" },
-        { id: 22, name: "QistBazaar", type: "Product", description: "BNPL fintech market disruptor. Pristine convergence point of structured data optimization and micro-credit financial products.", url: "https://qistbazaar.com/" },
-        { id: 23, name: "Accurix Consulting", type: "Consulting", description: "Boutique transactional consultancy model. Specializing in fractionated executive financial models and venture valuation matrices.", url: "https://accurixconsulting.com/careers" }
+        // CONSULTING & STRATEGY SEGMENT
+        { id: 1, rank: 1, name: "PwC Pakistan (A.F. Ferguson & Co.)", type: "Consulting", location: "Gulberg V", description: "Market leader in transaction advisory, complex corporate finance restructuring, risk frameworks, and enterprise-level growth strategy.", url: "https://www.pwc.com.pk/en/about-us/offices.html" },
+        { id: 2, rank: 2, name: "EY Ford Rhodes", type: "Consulting", location: "Gulberg II", description: "Top-tier operational turnarounds, structural market transactions, strategic planning models, and premium institutional business consulting.", url: "https://www.ey.com/en_gl/locations/pakistan" },
+        { id: 3, rank: 3, name: "KPMG Taseer Hadi & Co.", type: "Consulting", location: "Gulberg II", description: "Specialized corporate management consultancy wings focusing heavily on institutional risk management frameworks, systemic valuation, and structural mergers.", url: "https://kpmg.com/pk/en/home.html" },
+        { id: 4, rank: 4, name: "Yousuf Adil (Chartered Accountants)", type: "Consulting", location: "Gulberg III", description: "Premium tier-2 corporate finance hub specializing in large-scale infrastructure capital projects, feasibility modeling, and performance improvement analytics.", url: "https://yousufadil.com/careers/" },
+        { id: 5, rank: 5, name: "Abacus Consulting", type: "Consulting", location: "Egerton Road / DHA", description: "Largest domestic digital transformation strategy practice. Specializes in global enterprise target architecture, scaling metrics, and SAP strategy consulting.", url: "https://www.abacus-global.com/careers" },
+        { id: 6, rank: 6, name: "BDO Pakistan", type: "Consulting", location: "Ferozepur Road", description: "High-level corporate recovery mechanisms, detailed feasibility design, cross-border transactional structural analysis, and systemic business planning.", url: "https://www.bdo.com.pk/en-gb/careers" },
+        { id: 7, rank: 7, name: "Grant Thornton Anjum Rahman", type: "Consulting", location: "Gulberg III", description: "Bespoke operational performance advisory, corporate governance metrics, transaction evaluations, and deep market entry valuation strategies.", url: "https://bakertilly.com.pk/careers/" },
+        { id: 8, rank: 8, name: "MNBEC", type: "Consulting", location: "DHA Phase 5", description: "Elite boutique focusing exclusively on family business governance frameworks, large conglomerate estate inheritance modeling, and organizational strategy.", url: "https://mnbec.com/" },
+        { id: 9, rank: 9, name: "Crowe Pakistan", type: "Consulting", location: "Gulberg II", description: "Corporate restructuring specialists focusing intensely on legal framework planning, comprehensive asset management evaluation, and executive-tier workflow auditing.", url: "https://www.crowe.com/pk/careers" },
+        { id: 10, rank: 10, name: "Mazars Pakistan", type: "Consulting", location: "Gulberg III", description: "Global integrated infrastructure specialist scaling localized organizational optimization models, cross-border investments, and technical strategy design.", url: "https://www.mazars.pk/Home/Join-us" },
+        { id: 11, rank: 11, name: "Baker Tilly Mehmood Idrees Qamar", type: "Consulting", location: "Gulberg III", description: "Highly active in middle-market M&A sourcing frameworks, structured debt valuations, venture cap structuring, and forensic investment engineering.", url: "https://bakertilly.com.pk/careers/" },
+        { id: 12, rank: 12, name: "RSM Pakistan", type: "Consulting", location: "Gulberg V", description: "Strategic market positioning architects tracking tactical product rollout evaluations, corporate valuation metrics, and portfolio optimization modeling.", url: "https://www.rsm.global/pakistan/" },
+        { id: 13, rank: 13, name: "PKF F.R.A.N.Z. & Co.", type: "Consulting", location: "Gulberg", description: "Comprehensive corporate advisory focusing heavily on institutional risk modeling frameworks, statutory feasibility studies, and legal advisory structures.", url: "http://www.pkf.com.pk/careers/" },
+        { id: 14, rank: 14, name: "Moore Shekha Mufti", type: "Consulting", location: "Cavalry Ground", description: "Premium international partner tracking complex double-taxation relief modeling, cross-border asset transactions, and deep corporate advisory parameters.", url: "https://www.moore.pk/careers" },
+        { id: 15, rank: 15, name: "Nexia International", type: "Consulting", location: "Jail Road", description: "Private equity transaction specialists mapping out corporate investment structuring, target due-diligence execution, and private capital evaluations.", url: "https://nexia.pk/careers/" },
+
+        // NATIVE PRODUCT & TECH SEGMENT
+        { id: 16, rank: 1, name: "Motive (KeepTruckin)", type: "Product", location: "Gulberg II", description: "Global Silicon Valley flagship scaling AI-driven fleet infrastructure, fleet metrics SaaS, and advanced custom telematics systems with elite local PM tracks.", url: "https://gomotive.com/company/careers/" },
+        { id: 17, rank: 2, name: "Educative.io", type: "Product", location: "Gulberg III", description: "Highly dynamic cloud B2B developer education SaaS platform managing real-time runtime engine interfaces, running complete engineering-to-product tracks locally.", url: "https://www.educative.io/careers" },
+        { id: 18, rank: 3, name: "NetSol Technologies", type: "Product", location: "Ring Road Hub", description: "Global asset financial computing giant. Owns proprietary 'NFS Ascent' infrastructure managing tier-1 global asset leasing configurations.", url: "https://netsoltech.com/careers" },
+        { id: 19, rank: 4, name: "Systems Limited", type: "Product", location: "DHA Phase 8", description: "Largest tech ecosystem engine in the country. Owns unique domestic banking core platforms, retail configurations, and custom ERP product layers.", url: "https://www.systemsltd.com/careers" },
+        { id: 20, rank: 5, name: "Arbisoft", type: "Product", location: "DHA Phase 8", description: "Premium agile product scaling infrastructure operating massive customized SaaS instances, international platforms, and high-throughput routing algorithms.", url: "https://arbisoft.com/careers/" },
+        { id: 21, rank: 6, name: "Dubizzle Labs", type: "Product", location: "Gulberg III", description: "Tech core engine building Bayut/Dubizzle MENA property search applications, enterprise CRM software tools, and localized advertising frameworks.", url: "https://dubizzlelabs.breezy.hr/" },
+        { id: 22, rank: 7, name: "PakWheels", type: "Product", location: "Gulberg III", description: "Pioneering localized marketplace engine owning advanced vehicle verification technology platforms, valuation databases, and transactional digital services.", url: "https://pakeventures.simplicant.com/" },
+        { id: 23, rank: 8, name: "Programmers Force", type: "Product", location: "Gulberg III", description: "Massive AI computer-vision automated checking models. Specialized in fintech risk, identity checking compliance tools, and high-load backend pipelines.", url: "https://pf.com.pk/careers/" },
+        { id: 24, rank: 9, name: "VentureDive", type: "Product", location: "Gulberg V", description: "Premium system engineering masterminds architecting elite mobility software logic layers, food-delivery platforms, and financial transaction software architectures.", url: "https://www.venturedive.com/careers/" },
+        { id: 25, rank: 10, name: "Finja", type: "Product", location: "Gulberg / DHA", description: "Fintech innovator managing proprietary digital loan scoring code engines, digital corporate invoice tools, and payroll ledger applications.", url: "https://finja.pk/careers/" },
+        { id: 26, rank: 11, name: "Conrad Labs", type: "Product", location: "Model Town Link Rd", description: "Bespoke US venture-backed SaaS development refinery focusing explicitly on incubating early MVP code frameworks and refining complex software architectures.", url: "https://www.conradlabs.com/careers/" },
+        { id: 27, rank: 12, name: "Emumba", type: "Product", location: "DHA Phase 5", description: "High-performance fintech data visualization engineers scaling real-time algorithmic equity panels and heavy capital-market calculation interfaces.", url: "https://www.emumba.com/careers/" },
+        { id: 28, rank: 13, name: "TenPearls", type: "Product", location: "Gulberg III", description: "Global agile tech infrastructure scaling complex healthcare diagnostic patient portals, customized cloud platforms, and mobile consumer services.", url: "https://tenpearls.com/careers/" },
+        { id: 29, rank: 14, name: "Retailo Technologies", type: "Product", location: "Gulberg II", description: "B2B inventory orchestration and supply-chain fintech logic systems managing localized product distribution analytics and small-merchant credit software.", url: "https://retailo.co/careers/" },
+        { id: 30, rank: 15, name: "Nisum Pakistan", type: "Product", location: "Gulberg III", description: "Global systems firm managing enterprise-level multichannel merchant checkout tech systems, continuous pipeline checking frameworks, and large inventory tools.", url: "https://nisum.com/careers" }
     ];
 
     let companies = [];
@@ -439,11 +456,12 @@
     let companySearchQuery = "";
     let oppSearchQuery = "";
 
-    // DOM Nodes
+    // DOM Inputs Array
     const compNameInput = document.getElementById('compName');
     const compTypeInput = document.getElementById('compType');
-    const compDescInput = document.getElementById('compDesc');
+    const compLocationInput = document.getElementById('compLocation');
     const compUrlInput = document.getElementById('compUrl');
+    const compDescInput = document.getElementById('compDesc');
     const saveBtn = document.getElementById('saveCompanyBtn');
     const cancelEditBtn = document.getElementById('cancelEditBtn');
     const clearFormBtn = document.getElementById('clearFormBtn');
@@ -460,7 +478,7 @@
     }
 
     function saveToLocal() {
-        localStorage.setItem('nexora_advanced_v2_matrix', JSON.stringify(companies));
+        localStorage.setItem('nexora_lahore_v3_matrix', JSON.stringify(companies));
         calculateMetrics();
     }
 
@@ -471,7 +489,7 @@
     }
 
     function loadData() {
-        const stored = localStorage.getItem('nexora_advanced_v2_matrix');
+        const stored = localStorage.getItem('nexora_lahore_v3_matrix');
         if (stored) {
             try {
                 const parsed = JSON.parse(stored);
@@ -490,7 +508,8 @@
             const cleanQuery = searchQuery.trim().toLowerCase();
             const matchesSearch = !cleanQuery || 
                 c.name.toLowerCase().includes(cleanQuery) || 
-                c.description.toLowerCase().includes(cleanQuery) ||
+                (c.description && c.description.toLowerCase().includes(cleanQuery)) ||
+                (c.location && c.location.toLowerCase().includes(cleanQuery)) ||
                 c.type.toLowerCase().includes(cleanQuery);
             return matchesFilter && matchesSearch;
         });
@@ -499,24 +518,30 @@
     function renderCompaniesTab() {
         const filtered = getFilteredCompanies(companySearchQuery);
         if (filtered.length === 0) {
-            companiesContainer.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i> Zero vectors found matching criteria. Add target components above.</div>`;
+            companiesContainer.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i> No corporate structures mapped to current query parameters.</div>`;
             return;
         }
         let html = '';
         filtered.forEach(comp => {
             let safeUrl = comp.url?.trim() || '';
             if (safeUrl && !safeUrl.startsWith('http')) safeUrl = 'https://' + safeUrl;
+            const rankLabel = comp.rank ? `<span class="rank-badge"><i class="fas fa-arrow-up-wide-short"></i> Dynamic Rank: #${comp.rank}</span>` : '';
+            const locationLabel = comp.location ? `<div class="location-tag"><i class="fas fa-location-dot"></i> ${escapeHtml(comp.location)}</div>` : '<div class="location-tag"><i class="fas fa-location-dot"></i> Lahore Office Hub</div>';
             
             html += `
                 <div class="company-card" data-id="${comp.id}">
                     <div class="card-content">
                         <div class="card-meta-row">
-                            <div class="company-name">${escapeHtml(comp.name)}</div>
+                            <div>
+                                ${rankLabel}
+                                <div class="company-name">${escapeHtml(comp.name)}</div>
+                            </div>
                             <span class="type-badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
                         </div>
-                        <div class="company-desc">${escapeHtml(comp.description || 'No strategic description defined.')}</div>
+                        ${locationLabel}
+                        <div class="company-desc">${escapeHtml(comp.description || 'No specific asset parameters cataloged.')}</div>
                         <div>
-                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link"><i class="fas fa-arrow-up-right-from-square"></i> Institutional Careers Portal</a>` : '<span class="company-link" style="background:#f1f5f9; color:#94a3b8;"><i class="fas fa-link-slash"></i> Absolute Null URL</span>'}
+                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link"><i class="fas fa-arrow-up-right-from-square"></i> Careers Link</a>` : '<span class="company-link" style="background:#f1f5f9; color:#94a3b8;"><i class="fas fa-link-slash"></i> Null Route</span>'}
                         </div>
                     </div>
                     <div class="card-actions">
@@ -539,23 +564,25 @@
     function renderOpportunityTab() {
         const filtered = getFilteredCompanies(oppSearchQuery);
         if (filtered.length === 0) {
-            opportunityContainer.innerHTML = `<div class="empty-state"><i class="fas fa-eye-slash"></i> Stream array is empty. Adjust matching metrics.</div>`;
+            opportunityContainer.innerHTML = `<div class="empty-state"><i class="fas fa-eye-slash"></i> Surveillance array reporting zero hits.</div>`;
             return;
         }
         let html = '';
         filtered.forEach(comp => {
             let safeUrl = comp.url?.trim() || '';
             if (safeUrl && !safeUrl.startsWith('http')) safeUrl = 'https://' + safeUrl;
+            const locationLabel = comp.location ? `<div class="location-tag" style="color:rgba(255,255,255,0.7);"><i class="fas fa-location-dot"></i> ${escapeHtml(comp.location)}</div>` : '';
             html += `
-                <div class="company-card">
+                <div class="company-card" style="background: linear-gradient(135deg, #1e4663 0%, #112d42 100%); color: white; border: none;">
                     <div class="card-content">
                         <div class="card-meta-row">
-                            <div class="company-name">${escapeHtml(comp.name)}</div>
-                            <span class="type-badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
+                            <div class="company-name" style="color: white;">${escapeHtml(comp.name)}</div>
+                            <span class="type-badge" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.2);">${comp.type}</span>
                         </div>
-                        <div class="company-desc">${escapeHtml(comp.description)}</div>
+                        ${locationLabel}
+                        <div class="company-desc" style="color: #e2e8f0;">${escapeHtml(comp.description)}</div>
                         <div style="margin-top: 1rem;">
-                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link" style="background: var(--primary); color:white;"><i class="fas fa-bolt"></i> Access Stream Link</a>` : '<span class="company-link" style="background:#f1f5f9;"><i class="fas fa-ban"></i> Blocked Trace</span>'}
+                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link" style="background: white; color: #1e4663;"><i class="fas fa-bolt"></i> Access Careers Platform</a>` : '<span class="company-link" style="background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.4);"><i class="fas fa-ban"></i> Blocked Trace</span>'}
                         </div>
                     </div>
                 </div>
@@ -572,18 +599,21 @@
     function onSave() {
         const name = compNameInput.value.trim();
         const type = compTypeInput.value;
+        const location = compLocationInput.value.trim();
         const desc = compDescInput.value.trim();
         let url = compUrlInput.value.trim();
 
-        if (!name || !url) { alert("Absolute corporate metadata constraint unmet: Name & URL Required."); return; }
+        if (!name || !url) { alert("Core fields missing: Corporate target identity tracking needs Name & URL."); return; }
         if (!url.startsWith('http')) url = 'https://' + url;
 
         if (editModeId !== null) {
             const idx = companies.findIndex(c => c.id === editModeId);
-            if (idx !== -1) companies[idx] = { id: editModeId, name, type, description: desc, url };
+            if (idx !== -1) {
+                companies[idx] = { ...companies[idx], name, type, location, description: desc, url };
+            }
             exitEditMode();
         } else {
-            companies.push({ id: Date.now(), name, type, description: desc, url });
+            companies.push({ id: Date.now(), rank: null, name, type, location, description: desc, url });
             clearFormFields();
         }
         saveToLocal();
@@ -591,7 +621,7 @@
     }
 
     function deleteCompany(id) {
-        if (confirm("Execute irreversible strategic purge of this entity model?")) {
+        if (confirm("Execute irreversible deletion mapping parameters for this enterprise entity?")) {
             companies = companies.filter(c => c.id !== id);
             if (editModeId === id) exitEditMode();
             saveToLocal();
@@ -605,34 +635,36 @@
         editModeId = id;
         compNameInput.value = comp.name;
         compTypeInput.value = comp.type;
-        compDescInput.value = comp.description;
+        compLocationInput.value = comp.location || '';
         compUrlInput.value = comp.url;
-        formTitleSpan.innerText = 'Modify Strategic Node Parameters';
+        compDescInput.value = comp.description || '';
+        formTitleSpan.innerText = 'Modify Operational Asset Metrics';
         formIcon.className = 'fas fa-pen-to-square';
         cancelEditBtn.style.display = 'inline-flex';
-        saveBtn.innerHTML = '<i class="fas fa-pen"></i> Commit Mutation';
+        saveBtn.innerHTML = '<i class="fas fa-pen"></i> Commit Alteration';
         document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function exitEditMode() {
         editModeId = null;
         clearFormFields();
-        formTitleSpan.innerText = 'Inject Target Node';
+        formTitleSpan.innerText = 'Inject New Corporate Asset';
         formIcon.className = 'fas fa-circle-plus';
         cancelEditBtn.style.display = 'none';
         saveBtn.innerHTML = '<i class="fas fa-floppy-disk"></i> Commit Strategy';
     }
 
-    function clearFormFields() { compNameInput.value = ''; compDescInput.value = ''; compUrlInput.value = ''; }
+    function clearFormFields() { compNameInput.value = ''; compLocationInput.value = ''; compUrlInput.value = ''; compDescInput.value = ''; }
 
     function switchTab(tabId) {
         document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active-pane'));
         document.getElementById(tabId + 'Tab').classList.add('active-pane');
         document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
         document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+        if (tabId === 'opportunity') renderOpportunityTab(); else renderCompaniesTab();
     }
 
-    // Event Architecture mapping
+    // System Event Setup
     saveBtn.addEventListener('click', onSave);
     clearFormBtn.addEventListener('click', () => editModeId !== null ? exitEditMode() : clearFormFields());
     cancelEditBtn.addEventListener('click', exitEditMode);
@@ -656,7 +688,7 @@
         });
     });
 
-    // Initialize System Core Array
+    // Booting System Data Frame
     loadData();
 </script>
 </body>
