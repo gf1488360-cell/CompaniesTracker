@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>Nexora Opportunity Tracker | mobile-first</title>
-    <!-- Google Fonts + Font Awesome 6 -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Nexora | Executive Opportunity & Strategy Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -14,670 +13,651 @@
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
         }
-
-        body {
-            background: linear-gradient(145deg, #f4f8fe 0%, #eef2f9 100%);
-            font-family: 'Inter', sans-serif;
-            padding: 1rem;
-            color: #1a2c3e;
-            min-height: 100vh;
+        :root {
+            --bg-gradient: linear-gradient(145deg, #f5f8fc 0%, #eef3fa 100%);
+            --primary: #1e4663;
+            --primary-light: #2a5f85;
+            --accent: #10b981;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --card-shadow: 0 10px 25px rgba(30, 70, 99, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            --border-color: #e2e8f0;
         }
-
+        body {
+            background: var(--bg-gradient);
+            font-family: 'Inter', sans-serif;
+            padding: 1.5rem 1rem;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
         .container {
             max-width: 1280px;
             margin: 0 auto;
         }
-
-        /* header */
         .header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
-            padding: 0 0.25rem;
         }
         .header h1 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #124263, #2c7aa0);
+            background: linear-gradient(135deg, #0f172a, #1e4663);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.5px;
+        }
+        .header p {
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Dashboard Stats Panel */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.25rem;
+            box-shadow: var(--card-shadow);
+            border: 1px solid white;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+        .stat-icon.total { background: #eff6ff; color: #2563eb; }
+        .stat-icon.consulting { background: #fdf4ff; color: #c084fc; }
+        .stat-icon.product { background: #ecfdf5; color: #10b981; }
+        .stat-val { font-size: 1.5rem; font-weight: 700; color: #0f172a; line-height: 1.2; }
+        .stat-lbl { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        .tab-btn {
+            background: transparent;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            color: var(--text-muted);
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
+            transition: all 0.2s ease;
         }
-        .header p {
-            color: #4a627a;
-            margin-top: 0.5rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        .badge-tag {
-            display: inline-block;
-            background: #ffffffcc;
-            backdrop-filter: blur(4px);
-            padding: 0.3rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            margin-top: 0.6rem;
-            font-weight: 500;
-        }
+        .tab-btn:hover { color: var(--primary); background: rgba(30,70,99,0.04); }
+        .tab-btn.active { background: var(--primary); color: white; }
+        
+        .tab-pane { display: none; animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .tab-pane.active-pane { display: block; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* form card - fully responsive */
         .form-card {
             background: white;
-            border-radius: 28px;
-            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
             padding: 1.5rem;
-            margin-bottom: 1.8rem;
-            transition: 0.2s;
-            border: 1px solid rgba(0,0,0,0.02);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.8);
         }
         .form-title {
-            font-weight: 650;
-            font-size: 1.25rem;
-            margin-bottom: 1.2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1.25rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #1f5e83;
+            color: var(--primary);
         }
         .form-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
             margin-bottom: 1.5rem;
         }
-        .input-group {
-            width: 100%;
+        @media (min-width: 768px) {
+            .form-grid { grid-template-columns: 2fr 1fr 2fr; }
+            .full-width-field { grid-column: span 3; }
         }
         .input-group label {
             display: block;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.4px;
-            color: #5a7184;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
             margin-bottom: 0.4rem;
         }
-        .input-group input, .input-group textarea {
+        .input-group input, .input-group textarea, .input-group select {
             width: 100%;
-            padding: 0.85rem 1rem;
-            border-radius: 20px;
-            border: 1.5px solid #e2eaf3;
-            background: #ffffff;
-            font-family: 'Inter', monospace;
-            font-size: 0.95rem;
-            transition: 0.2s;
-            resize: vertical;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            background: #f8fafc;
+            transition: all 0.2s ease;
         }
-        .input-group input:focus, .input-group textarea:focus {
+        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
             outline: none;
-            border-color: #2c8fbb;
-            box-shadow: 0 0 0 3px rgba(44,143,187,0.15);
+            border-color: var(--primary-light);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(42,95,133,0.1);
         }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 0.2rem;
-        }
+        
+        .btn-group { display: flex; flex-wrap: wrap; gap: 0.75rem; }
         .btn {
             border: none;
-            background: #eef3fa;
-            padding: 0.75rem 1.2rem;
-            border-radius: 60px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 14px;
             font-weight: 600;
             font-size: 0.85rem;
             cursor: pointer;
-            transition: 0.2s;
             display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: 8px;
             font-family: inherit;
-            flex: 1 0 auto;
+            transition: all 0.2s ease;
         }
-        .btn-primary {
-            background: #1f5e83;
-            color: white;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-        }
-        .btn-primary:hover {
-            background: #0f4b6b;
-            transform: translateY(-1px);
-        }
-        .btn-secondary {
-            background: #eef2f7;
-            color: #2c3e50;
-        }
-        .btn-danger {
-            background: #fee2e2;
-            color: #b91c1c;
-        }
-        .btn-sm {
-            padding: 0.45rem 1rem;
-            font-size: 0.7rem;
-        }
-        /* stats + search row - mobile adaptive */
-        .stats {
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: var(--primary-light); }
+        .btn-secondary { background: #f1f5f9; color: #334155; }
+        .btn-secondary:hover { background: #e2e8f0; }
+        .btn-danger { background: #fee2e2; color: #b91c1c; }
+        .btn-danger:hover { background: #fca5a5; }
+        .btn-sm { padding: 0.45rem 1rem; font-size: 0.75rem; border-radius: 10px; }
+
+        /* Controls Block */
+        .filter-controls {
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
         }
-        .counter {
-            background: white;
-            padding: 0.5rem 1rem;
-            border-radius: 60px;
+        .filter-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .pill-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            width: fit-content;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
+        .pill-btn.active { background: #e2e8f0; color: var(--primary); box-shadow: inset 0 2px 4px rgba(0,0,0,0.04); }
+        
         .search-box {
-            background: white;
-            border-radius: 60px;
-            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 0.6rem 1rem;
             display: flex;
             align-items: center;
             gap: 10px;
-            border: 1px solid #e0e9f2;
-            width: 100%;
+            border: 1.5px solid var(--border-color);
         }
-        .search-box i {
-            color: #7893ab;
-            font-size: 1rem;
-        }
-        .search-box input {
-            border: none;
-            padding: 0.6rem 0;
-            width: 100%;
-            background: transparent;
-            outline: none;
-            font-family: inherit;
-            font-size: 0.95rem;
-        }
-        #clearSearch {
-            cursor: pointer;
-            opacity: 0.6;
-            font-size: 1rem;
+        .search-box input { flex: 1; border: none; background: transparent; outline: none; font-size: 0.9rem; color: var(--text-main); }
+        
+        @media (min-width: 640px) {
+            .filter-controls { flex-direction: row; justify-content: space-between; align-items: center; }
+            .search-box { width: 300px; }
         }
 
-        /* cards grid - truly responsive */
+        /* Responsive Grid Cards Layout */
         .companies-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.2rem;
+            gap: 1.5rem;
         }
+        @media (min-width: 640px) { .companies-grid { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); } }
+        
         .company-card {
             background: white;
-            border-radius: 28px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-            transition: 0.2s ease;
+            border-radius: 24px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(241,245,249,0.8);
             display: flex;
             flex-direction: column;
-            border: 1px solid #edf2fa;
-            overflow: hidden;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .company-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 18px 28px -12px rgba(0,0,0,0.12);
-        }
-        .card-content {
-            padding: 1.3rem 1.2rem 0.8rem 1.2rem;
-            flex: 1;
-        }
-        .company-name {
-            font-size: 1.25rem;
+        .company-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(30,70,99,0.08); }
+        .card-content { padding: 1.5rem; }
+        
+        .card-meta-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
+        .company-name { font-size: 1.25rem; font-weight: 700; color: #0f172a; letter-spacing: -0.3px; }
+        
+        .type-badge {
+            font-size: 0.65rem;
             font-weight: 700;
-            color: #1a3f5c;
-            line-height: 1.3;
-            margin-bottom: 0.25rem;
-            word-break: break-word;
+            text-transform: uppercase;
+            padding: 0.25rem 0.6rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
         }
-        .company-desc {
-            color: #4a5568;
-            font-size: 0.85rem;
-            line-height: 1.45;
-            margin: 0.6rem 0;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .link-wrapper {
-            margin: 0.8rem 0 0.2rem;
-        }
+        .badge-consulting { background: #fdf4ff; color: #a855f7; border: 1px solid #f3e8ff; }
+        .badge-product { background: #ecfdf5; color: #10b981; border: 1px solid #d1fae5; }
+        
+        .company-desc { color: #475569; font-size: 0.85rem; line-height: 1.5; margin: 0.75rem 0 1.25rem; }
+        
         .company-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #eef2ff;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            text-decoration: none;
-            color: #1f5e83;
-            transition: 0.2s;
-            word-break: break-all;
-        }
-        .company-link i {
+            background: #f0f7fc;
+            padding: 0.5rem 1.2rem;
+            border-radius: 12px;
             font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--primary-light);
+            transition: all 0.2s ease;
         }
-        .company-link:active {
-            background: #e0e8ff;
-            transform: scale(0.97);
-        }
+        .company-link:hover { background: var(--primary); color: white; }
+        
         .card-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 12px;
-            padding: 0.8rem 1.2rem 1.2rem;
-            background: #fbfdff;
-            border-top: 1px solid #ecf3fa;
+            gap: 8px;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #f1f5f9;
+            background: #fafafa;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
         }
-        .empty-state {
-            text-align: center;
-            padding: 2.5rem 1rem;
-            background: white;
-            border-radius: 2rem;
-            color: #6c86a3;
-            grid-column: 1 / -1;
-        }
-        footer {
-            margin-top: 2rem;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #7e95af;
-            padding-bottom: 0.8rem;
-        }
-        /* touch optimizations */
-        .btn:active {
-            transform: scale(0.97);
-        }
-        /* tablet and desktop improvements */
-        @media (min-width: 560px) {
-            .stats {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .search-box {
-                max-width: 280px;
-            }
-            .companies-grid {
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            }
-        }
-        @media (min-width: 900px) {
-            body {
-                padding: 1.8rem;
-            }
-            .companies-grid {
-                gap: 1.6rem;
-            }
-            .btn-group {
-                flex-wrap: nowrap;
-            }
-            .btn {
-                flex: 0 0 auto;
-            }
-        }
-        /* landscape mobile fix */
-        @media (max-width: 480px) {
-            .btn-group {
-                flex-direction: column;
-            }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .card-actions {
-                justify-content: space-evenly;
-            }
-            .card-actions .btn {
-                width: auto;
-                flex: 1;
-            }
-        }
+        .empty-state { text-align: center; padding: 4rem 2rem; background: white; border-radius: 24px; color: var(--text-muted); box-shadow: var(--card-shadow); }
+        .empty-state i { font-size: 2.5rem; margin-bottom: 1rem; color: #cbd5e1; }
+        
+        footer { margin-top: 3rem; text-align: center; font-size: 0.75rem; color: var(--text-muted); padding-bottom: 1rem; }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <h1><i class="fas fa-chart-line"></i> Opportunity Tracker</h1>
-        <p>Track target companies, internships, job openings — all in one place</p>
-        <div class="badge-tag"><i class="fas-regular fa-pen-to-square"></i> Add · Edit · Delete · Search · Mobile ready</div>
+        <h1><i class="fas fa-crosshairs"></i> Nexora Blueprint Ecosystem</h1>
+        <p>Corporate Strategy · Management Consulting · Digital Products · APM Hub</p>
     </div>
 
-    <!-- Form card (Add/Edit) -->
-    <div class="form-card" id="formCard">
-        <div class="form-title">
-            <i class="fas fa-plus-circle" id="formIcon"></i> 
-            <span id="formTitleText">Add new company</span>
-        </div>
-        <div class="form-grid">
-            <div class="input-group">
-                <label><i class="fas fa-building"></i> Company Name *</label>
-                <input type="text" id="companyName" placeholder="e.g., EY Pakistan, Abacus Consulting" autocomplete="off">
-            </div>
-            <div class="input-group">
-                <label><i class="fas fa-align-left"></i> Description / notes</label>
-                <textarea id="companyDesc" rows="2" placeholder="What makes them interesting? Focus area, why target?"></textarea>
-            </div>
-            <div class="input-group">
-                <label><i class="fas fa-link"></i> Careers / Website URL *</label>
-                <input type="url" id="companyUrl" placeholder="https://www.ey.com/en_pk/careers">
+    <div class="dashboard-stats">
+        <div class="stat-card">
+            <div class="stat-icon total"><i class="fas fa-building-user"></i></div>
+            <div>
+                <div class="stat-val" id="metricTotal">0</div>
+                <div class="stat-lbl">Total Pipeline</div>
             </div>
         </div>
-        <div class="btn-group">
-            <button class="btn btn-primary" id="saveBtn"><i class="fas fa-save"></i> Save Company</button>
-            <button class="btn btn-secondary" id="cancelEditBtn" style="display: none;"><i class="fas fa-times"></i> Cancel edit</button>
-            <button class="btn btn-secondary" id="clearFormBtn"><i class="fas fa-eraser"></i> Clear</button>
+        <div class="stat-card">
+            <div class="stat-icon consulting"><i class="fas fa-bezier-curve"></i></div>
+            <div>
+                <div class="stat-val" id="metricConsulting">0</div>
+                <div class="stat-lbl">Strategy & Advisory</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon product"><i class="fas fa-cubes"></i></div>
+            <div>
+                <div class="stat-val" id="metricProduct">0</div>
+                <div class="stat-lbl">Tech & Product Systems</div>
+            </div>
         </div>
     </div>
 
-    <!-- Stats & Search row -->
-    <div class="stats">
-        <div class="counter"><i class="fas fa-chart-simple"></i> Total tracked: <span id="totalCount">0</span></div>
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" id="searchInput" placeholder="Filter by name or description...">
-            <i class="fas fa-times-circle" id="clearSearch" style="cursor:pointer;"></i>
+    <div class="tabs">
+        <button class="tab-btn active" data-tab="companies"><i class="fas fa-layer-group"></i> Pipeline Manager</button>
+        <button class="tab-btn" data-tab="opportunity"><i class="fas fa-bolt"></i> Live Intelligence View</button>
+    </div>
+
+    <div id="companiesTab" class="tab-pane active-pane">
+        <div class="form-card">
+            <div class="form-title"><i class="fas fa-circle-plus" id="formIcon"></i><span id="formTitleText">Inject Target Node</span></div>
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Enterprise Entity Name *</label>
+                    <input type="text" id="compName" placeholder="e.g., McKinsey, Systems Limited">
+                </div>
+                <div class="input-group">
+                    <label>Ecosystem Domain Class *</label>
+                    <select id="compType">
+                        <option value="Consulting">Strategy & Consulting</option>
+                        <option value="Product">Product & Technology</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Strategic Recruitment Ecosystem URL *</label>
+                    <input type="url" id="compUrl" placeholder="https://...">
+                </div>
+                <div class="input-group full-width-field">
+                    <label>Strategic Objective / APM Pipeline Thesis / Mandate Rationale</label>
+                    <textarea id="compDesc" rows="2" placeholder="Detail high-level product strategy alignment or explicit entry schemes."></textarea>
+                </div>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-primary" id="saveCompanyBtn"><i class="fas fa-floppy-disk"></i> Commit Strategy</button>
+                <button class="btn btn-secondary" id="cancelEditBtn" style="display:none;"><i class="fas fa-xmark"></i> Abort</button>
+                <button class="btn btn-secondary" id="clearFormBtn"><i class="fas fa-broom"></i> Clear Inputs</button>
+            </div>
+        </div>
+
+        <div class="filter-controls">
+            <div class="filter-pills" id="filterPillsContainer">
+                <button class="pill-btn active" data-filter="all">All Targets</button>
+                <button class="pill-btn" data-filter="Consulting">Consulting Matrix</button>
+                <button class="pill-btn" data-filter="Product">Product Elite</button>
+            </div>
+            <div class="search-box">
+                <i class="fas fa-magnifying-glass"></i>
+                <input type="text" id="searchCompaniesInput" placeholder="Filter vectors...">
+                <i class="fas fa-circle-xmark" id="clearCompanySearch" style="cursor:pointer; color: var(--text-muted);"></i>
+            </div>
+        </div>
+
+        <div id="companiesListContainer" class="companies-grid">
+            <div class="empty-state">Constructing structural mapping matrix...</div>
         </div>
     </div>
 
-    <!-- Companies grid -->
-    <div id="companiesGrid" class="companies-grid">
-        <div class="empty-state"><i class="fas fa-folder-open"></i> No companies yet. Add your first target!</div>
+    <div id="opportunityTab" class="tab-pane">
+        <div class="filter-controls">
+            <div style="font-weight: 700; color: var(--primary); font-size: 1rem;"><i class="fas fa-arrow-trend-up"></i> Executive Surveillance Array</div>
+            <div class="search-box">
+                <i class="fas fa-magnifying-glass"></i>
+                <input type="text" id="searchOppInput" placeholder="Filter live streams...">
+                <i class="fas fa-circle-xmark" id="clearOppSearch" style="cursor:pointer; color: var(--text-muted);"></i>
+            </div>
+        </div>
+        <div id="opportunityListContainer" class="companies-grid"></div>
     </div>
+
     <footer>
-        <i class="fas fa-external-link-alt"></i> Click link → opens in new tab · All data stored locally in your browser · Fully responsive
+        <i class="fas fa-shield-halved"></i> Engine Core: HTML5 LocalStorage Sandbox | Active Footprint: 23 Strategic Seed Matrices Pre-Loaded
     </footer>
 </div>
 
 <script>
-    // ---------- STATE ----------
+    // ----- ADVANCED COMPREHENSIVE SEED MATRIX DATA -----
+    const SEED_COMPANIES = [
+        { id: 1, name: "EY Pakistan", type: "Consulting", description: "Big 4 premium consulting hub. Target strategic business advisory, transactional risk parameters, and elite corporate advisory programs.", url: "https://www.ey.com/en_pk/careers" },
+        { id: 2, name: "Abacus Consulting", type: "Consulting", description: "Largest tier-1 local operational and technology consulting infrastructure in Pakistan. Focus heavily on Enterprise Risk and Management Operations.", url: "https://www.abacus-global.com/careers" },
+        { id: 3, name: "PwC Pakistan", type: "Consulting", description: "Elite institutional advisory framework. Pivotal for tracking strategic micro-insights, risk execution, and digital transformation consulting programs.", url: "https://www.pwc.com.pk/en/careers.html" },
+        { id: 4, name: "Deloitte Pakistan", type: "Consulting", description: "Global systems advisory asset. Key interface for structural strategy pipelines and enterprise system health consultations.", url: "https://www2.deloitte.com/pk/en/careers/careers.html" },
+        { id: 5, name: "KPMG Pakistan", type: "Consulting", description: "Targeted technological risk models, internal control structures, and specialized graduate tracks optimized for structured corporate problem solvers.", url: "https://kpmg.com/pk/en/home/careers.html" },
+        { id: 6, name: "Accenture", type: "Consulting", description: "Global archetype of systemic IT strategy, structural technological transformations, and elite product management deployments.", url: "https://www.accenture.com/us-en/careers" },
+        { id: 7, name: "Arthur D. Little", type: "Consulting", description: "The premier nexus of pure digital strategy and high-stakes technological transformation consultation. Tailored for absolute strategic operators.", url: "https://www.adlittle.com/en/careers" },
+        { id: 8, name: "McKinsey & Company", type: "Consulting", description: "Global absolute echelon of corporate policy, executive strategic execution, and specialized digital venture operations.", url: "https://www.mckinsey.com/careers/home" },
+        { id: 9, name: "Boston Consulting Group", type: "Consulting", description: "BCG Platinion framework architecture. Tailored vector targeting high-profile product innovation and core business model definitions.", url: "https://www.bcg.com/careers/default.aspx" },
+        { id: 10, name: "Systems Limited", type: "Product", description: "Premier IT export powerhouse and digital ecosystem architect. Direct entry tracking for premium Associate Product Owner positions.", url: "https://www.systemsltd.com/careers" },
+        { id: 11, name: "Netsol Technologies", type: "Product", description: "Global standard asset for premium asset finance systems. Highly optimized for high-end product management frameworks and structural business transformations.", url: "https://www.netsoltech.com/careers" },
+        { id: 12, name: "10Pearls", type: "Product", description: "Elite agile development and digital product design firm. Targets high-velocity digital product consulting and lean product management models.", url: "https://10pearls.com/careers/" },
+        { id: 13, name: "Dubizzle Labs", type: "Product", description: "Highly advanced regional consumer product house. Prominent vector for specialized, elite structured APM lifecycle entry tracks.", url: "https://www.dubizzlelabs.com/careers" },
+        { id: 14, name: "PakWheels", type: "Product", description: "Automotive high-traffic monetization ecosystem. High data volume context, pristine domain for localized Product management deployment.", url: "https://www.pakwheels.com/jobs/" },
+        { id: 15, name: "Foodpanda Pakistan", type: "Product", description: "Hyper-velocity logistical tech grid. Features highly demanding structural targets for elite operational and product strategy tracks.", url: "https://careers.foodpanda.com/" },
+        { id: 16, name: "Careem", type: "Product", description: "The definitive regional ride-hailing and super-app engine. Outstanding benchmark framework for technical APM tracks.", url: "https://www.careem.com/careers/" },
+        { id: 17, name: "Bykea", type: "Product", description: "Hyper-localized on-demand logistics ecosystem. High-yield environment for complex technical optimization and Product Analysts.", url: "https://bykea.com/careers/" },
+        { id: 18, name: "Retailo", type: "Product", description: "B2B digital inventory distribution network. High-scale supply-chain infrastructure engineering tailored for enterprise product operators.", url: "https://retailo.co/careers/" },
+        { id: 19, name: "Jazz (Mobilink)", type: "Product", description: "Telecommunications and digital financial banking monolith (JazzCash). Exceptional target for macro product scaling matrices.", url: "https://jobs.jazz.com.pk/" },
+        { id: 20, name: "Tazah Technologies", type: "Product", description: "Agri-tech supply infrastructure architecture. High focus on specialized B2B transaction models and product line operations.", url: "https://www.tazah.co/" },
+        { id: 21, name: "Maqsad", type: "Product", description: "High-engagement digital EdTech platform. Pristine dynamic ecosystem optimized for fast-paced growth track APM roles.", url: "https://maqsad.io/" },
+        { id: 22, name: "QistBazaar", type: "Product", description: "BNPL fintech market disruptor. Pristine convergence point of structured data optimization and micro-credit financial products.", url: "https://qistbazaar.com/" },
+        { id: 23, name: "Accurix Consulting", type: "Consulting", description: "Boutique transactional consultancy model. Specializing in fractionated executive financial models and venture valuation matrices.", url: "https://accurixconsulting.com/careers" }
+    ];
+
     let companies = [];
     let editModeId = null;
-    let searchQuery = "";
+    let activeFilter = "all";
+    let companySearchQuery = "";
+    let oppSearchQuery = "";
 
-    // DOM elements
-    const companyNameInput = document.getElementById('companyName');
-    const companyDescInput = document.getElementById('companyDesc');
-    const companyUrlInput = document.getElementById('companyUrl');
-    const saveBtn = document.getElementById('saveBtn');
+    // DOM Nodes
+    const compNameInput = document.getElementById('compName');
+    const compTypeInput = document.getElementById('compType');
+    const compDescInput = document.getElementById('compDesc');
+    const compUrlInput = document.getElementById('compUrl');
+    const saveBtn = document.getElementById('saveCompanyBtn');
     const cancelEditBtn = document.getElementById('cancelEditBtn');
     const clearFormBtn = document.getElementById('clearFormBtn');
-    const totalCountSpan = document.getElementById('totalCount');
-    const companiesGridDiv = document.getElementById('companiesGrid');
-    const searchInput = document.getElementById('searchInput');
-    const clearSearchIcon = document.getElementById('clearSearch');
-    const formTitleTextSpan = document.getElementById('formTitleText');
+    const companiesContainer = document.getElementById('companiesListContainer');
+    const opportunityContainer = document.getElementById('opportunityListContainer');
+    const searchCompaniesInput = document.getElementById('searchCompaniesInput');
+    const searchOppInput = document.getElementById('searchOppInput');
+    const formTitleSpan = document.getElementById('formTitleText');
     const formIcon = document.getElementById('formIcon');
 
-    // Helper: escape HTML
     function escapeHtml(str) {
         if (!str) return '';
-        return str.replace(/[&<>]/g, function(m) {
-            if (m === '&') return '&amp;';
-            if (m === '<') return '&lt;';
-            if (m === '>') return '&gt;';
-            return m;
+        return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;'));
+    }
+
+    function saveToLocal() {
+        localStorage.setItem('nexora_advanced_v2_matrix', JSON.stringify(companies));
+        calculateMetrics();
+    }
+
+    function calculateMetrics() {
+        document.getElementById('metricTotal').innerText = companies.length;
+        document.getElementById('metricConsulting').innerText = companies.filter(c => c.type === 'Consulting').length;
+        document.getElementById('metricProduct').innerText = companies.filter(c => c.type === 'Product').length;
+    }
+
+    function loadData() {
+        const stored = localStorage.getItem('nexora_advanced_v2_matrix');
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                companies = Array.isArray(parsed) && parsed.length > 0 ? parsed : [...SEED_COMPANIES];
+            } catch(e) { companies = [...SEED_COMPANIES]; }
+        } else {
+            companies = [...SEED_COMPANIES];
+        }
+        saveToLocal();
+        renderBothTabs();
+    }
+
+    function getFilteredCompanies(searchQuery) {
+        return companies.filter(c => {
+            const matchesFilter = activeFilter === "all" || c.type === activeFilter;
+            const cleanQuery = searchQuery.trim().toLowerCase();
+            const matchesSearch = !cleanQuery || 
+                c.name.toLowerCase().includes(cleanQuery) || 
+                c.description.toLowerCase().includes(cleanQuery) ||
+                c.type.toLowerCase().includes(cleanQuery);
+            return matchesFilter && matchesSearch;
         });
     }
 
-    // LocalStorage functions
-    function loadFromStorage() {
-        const stored = localStorage.getItem('opportunity_tracker_companies');
-        if (stored) {
-            try {
-                companies = JSON.parse(stored);
-                companies = companies.filter(c => c && typeof c === 'object').map(c => ({
-                    id: c.id || Date.now() + Math.random(),
-                    name: c.name || 'Unnamed',
-                    description: c.description || c.desc || '',
-                    url: c.url || c.link || ''
-                }));
-            } catch(e) { companies = []; }
-        } else {
-            // Default demo entries (realistic for testing)
-            companies = [
-                { id: 1001, name: "EY Pakistan", description: "Big 4 consulting – strategy, advisory, tax. Strong corporate brand & global exposure.", url: "https://www.ey.com/en_pk/careers" },
-                { id: 1002, name: "Abacus Consulting", description: "Largest Pakistani management & tech consulting firm. Great for local impact.", url: "https://www.abacus-global.com/careers" },
-                { id: 1003, name: "Accurix Consulting", description: "Boutique firm: startup finance, fractional CFO, strategy for emerging businesses.", url: "https://accurixconsulting.com/careers" },
-                { id: 1004, name: "RSM Pakistan", description: "Top audit, tax & consulting alternative to Big 4. Entrepreneur-friendly.", url: "https://www.rsm.global/pakistan/careers" }
-            ];
-        }
-        renderGrid();
-        saveToStorage();
-    }
-
-    function saveToStorage() {
-        localStorage.setItem('opportunity_tracker_companies', JSON.stringify(companies));
-        updateTotalCount();
-    }
-
-    function updateTotalCount() {
-        const filtered = getFilteredCompanies();
-        totalCountSpan.innerText = filtered.length;
-    }
-
-    function getFilteredCompanies() {
-        if (!searchQuery.trim()) return [...companies];
-        const q = searchQuery.trim().toLowerCase();
-        return companies.filter(comp => 
-            comp.name.toLowerCase().includes(q) || 
-            (comp.description && comp.description.toLowerCase().includes(q))
-        );
-    }
-
-    // Render grid (mobile-friendly cards)
-    function renderGrid() {
-        const filtered = getFilteredCompanies();
+    function renderCompaniesTab() {
+        const filtered = getFilteredCompanies(companySearchQuery);
         if (filtered.length === 0) {
-            companiesGridDiv.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i> ${companies.length ? 'No matching companies. Try different keywords.' : 'Add your first company to start tracking!'}</div>`;
-            updateTotalCount();
+            companiesContainer.innerHTML = `<div class="empty-state"><i class="fas fa-folder-open"></i> Zero vectors found matching criteria. Add target components above.</div>`;
             return;
         }
         let html = '';
-        filtered.forEach(company => {
-            const safeName = escapeHtml(company.name);
-            const safeDesc = escapeHtml(company.description || 'No description provided.');
-            let safeUrl = company.url && company.url.trim() !== '' ? company.url.trim() : '';
-            if (safeUrl && !safeUrl.startsWith('http://') && !safeUrl.startsWith('https://')) {
-                safeUrl = 'https://' + safeUrl;
-            }
-            const hasValidUrl = safeUrl && safeUrl !== '#';
+        filtered.forEach(comp => {
+            let safeUrl = comp.url?.trim() || '';
+            if (safeUrl && !safeUrl.startsWith('http')) safeUrl = 'https://' + safeUrl;
+            
             html += `
-                <div class="company-card" data-id="${company.id}">
+                <div class="company-card" data-id="${comp.id}">
                     <div class="card-content">
-                        <div class="company-name">${safeName}</div>
-                        <div class="company-desc">${safeDesc}</div>
-                        <div class="link-wrapper">
-                            ${hasValidUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link"><i class="fas fa-external-link-alt"></i> Visit careers page</a>` : '<span class="company-link" style="background:#f0f2f5;"><i class="fas fa-link-slash"></i> No link added</span>'}
+                        <div class="card-meta-row">
+                            <div class="company-name">${escapeHtml(comp.name)}</div>
+                            <span class="type-badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
+                        </div>
+                        <div class="company-desc">${escapeHtml(comp.description || 'No strategic description defined.')}</div>
+                        <div>
+                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link"><i class="fas fa-arrow-up-right-from-square"></i> Institutional Careers Portal</a>` : '<span class="company-link" style="background:#f1f5f9; color:#94a3b8;"><i class="fas fa-link-slash"></i> Absolute Null URL</span>'}
                         </div>
                     </div>
                     <div class="card-actions">
-                        <button class="btn btn-secondary btn-sm edit-company" data-id="${company.id}"><i class="fas fa-pen"></i> Edit</button>
-                        <button class="btn btn-danger btn-sm delete-company" data-id="${company.id}"><i class="fas fa-trash"></i> Delete</button>
+                        <button class="btn btn-secondary btn-sm edit-company-btn" data-id="${comp.id}"><i class="fas fa-pen-to-square"></i> Mod</button>
+                        <button class="btn btn-danger btn-sm delete-company-btn" data-id="${comp.id}"><i class="fas fa-trash-can"></i> Purge</button>
                     </div>
                 </div>
             `;
         });
-        companiesGridDiv.innerHTML = html;
-        updateTotalCount();
-
-        // attach dynamic event handlers for edit/delete
-        document.querySelectorAll('.edit-company').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = parseInt(btn.getAttribute('data-id'));
-                startEditMode(id);
-            });
+        companiesContainer.innerHTML = html;
+        
+        document.querySelectorAll('.edit-company-btn').forEach(btn => {
+            btn.addEventListener('click', () => startEditMode(parseInt(btn.dataset.id)));
         });
-        document.querySelectorAll('.delete-company').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                const id = parseInt(btn.getAttribute('data-id'));
-                deleteCompanyById(id);
-            });
+        document.querySelectorAll('.delete-company-btn').forEach(btn => {
+            btn.addEventListener('click', () => deleteCompany(parseInt(btn.dataset.id)));
         });
     }
 
-CRUD core
-    function addCompany(name, description, url) {
-        if (!name.trim()) {
-            alert("Company name is required.");
-            return false;
+    function renderOpportunityTab() {
+        const filtered = getFilteredCompanies(oppSearchQuery);
+        if (filtered.length === 0) {
+            opportunityContainer.innerHTML = `<div class="empty-state"><i class="fas fa-eye-slash"></i> Stream array is empty. Adjust matching metrics.</div>`;
+            return;
         }
-        let cleanUrl = url.trim();
-        if (!cleanUrl) {
-            alert("Please provide a careers page URL.");
-            return false;
-        }
-        if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
-            cleanUrl = 'https://' + cleanUrl;
-        }
-        const newCompany = {
-            id: Date.now(),
-            name: name.trim(),
-            description: description.trim() || '',
-            url: cleanUrl
-        };
-        companies.push(newCompany);
-        saveToStorage();
-        renderGrid();
-        return true;
+        let html = '';
+        filtered.forEach(comp => {
+            let safeUrl = comp.url?.trim() || '';
+            if (safeUrl && !safeUrl.startsWith('http')) safeUrl = 'https://' + safeUrl;
+            html += `
+                <div class="company-card">
+                    <div class="card-content">
+                        <div class="card-meta-row">
+                            <div class="company-name">${escapeHtml(comp.name)}</div>
+                            <span class="type-badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
+                        </div>
+                        <div class="company-desc">${escapeHtml(comp.description)}</div>
+                        <div style="margin-top: 1rem;">
+                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link" style="background: var(--primary); color:white;"><i class="fas fa-bolt"></i> Access Stream Link</a>` : '<span class="company-link" style="background:#f1f5f9;"><i class="fas fa-ban"></i> Blocked Trace</span>'}
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        opportunityContainer.innerHTML = html;
     }
 
-    function updateCompany(id, name, description, url) {
-        if (!name.trim()) {
-            alert("Company name cannot be empty.");
-            return false;
-        }
-        let cleanUrl = url.trim();
-        if (!cleanUrl) {
-            alert("URL is required.");
-            return false;
-        }
-        if (!cleanUrl.startsWith('http://') && !cleanUrl.startsWith('https://')) {
-            cleanUrl = 'https://' + cleanUrl;
-        }
-        const index = companies.findIndex(c => c.id === id);
-        if (index !== -1) {
-            companies[index] = {
-                ...companies[index],
-                name: name.trim(),
-                description: description.trim() || '',
-                url: cleanUrl
-            };
-            saveToStorage();
-            renderGrid();
-            return true;
-        }
-        return false;
+    function renderBothTabs() {
+        renderCompaniesTab();
+        renderOpportunityTab();
     }
 
-    function deleteCompanyById(id) {
-        if (confirm("Remove this company from your tracker?")) {
+    function onSave() {
+        const name = compNameInput.value.trim();
+        const type = compTypeInput.value;
+        const desc = compDescInput.value.trim();
+        let url = compUrlInput.value.trim();
+
+        if (!name || !url) { alert("Absolute corporate metadata constraint unmet: Name & URL Required."); return; }
+        if (!url.startsWith('http')) url = 'https://' + url;
+
+        if (editModeId !== null) {
+            const idx = companies.findIndex(c => c.id === editModeId);
+            if (idx !== -1) companies[idx] = { id: editModeId, name, type, description: desc, url };
+            exitEditMode();
+        } else {
+            companies.push({ id: Date.now(), name, type, description: desc, url });
+            clearFormFields();
+        }
+        saveToLocal();
+        renderBothTabs();
+    }
+
+    function deleteCompany(id) {
+        if (confirm("Execute irreversible strategic purge of this entity model?")) {
             companies = companies.filter(c => c.id !== id);
-            saveToStorage();
             if (editModeId === id) exitEditMode();
-            renderGrid();
+            saveToLocal();
+            renderBothTabs();
         }
     }
 
-    // Form edit mode management
-    function resetForm() {
-        companyNameInput.value = '';
-        companyDescInput.value = '';
-        companyUrlInput.value = '';
-        editModeId = null;
-        formTitleTextSpan.innerText = 'Add new company';
-        formIcon.className = 'fas fa-plus-circle';
-        cancelEditBtn.style.display = 'none';
-        saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Company';
+    function startEditMode(id) {
+        const comp = companies.find(c => c.id === id);
+        if (!comp) return;
+        editModeId = id;
+        compNameInput.value = comp.name;
+        compTypeInput.value = comp.type;
+        compDescInput.value = comp.description;
+        compUrlInput.value = comp.url;
+        formTitleSpan.innerText = 'Modify Strategic Node Parameters';
+        formIcon.className = 'fas fa-pen-to-square';
+        cancelEditBtn.style.display = 'inline-flex';
+        saveBtn.innerHTML = '<i class="fas fa-pen"></i> Commit Mutation';
+        document.querySelector('.form-card').scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function exitEditMode() {
         editModeId = null;
-        resetForm();
+        clearFormFields();
+        formTitleSpan.innerText = 'Inject Target Node';
+        formIcon.className = 'fas fa-circle-plus';
+        cancelEditBtn.style.display = 'none';
+        saveBtn.innerHTML = '<i class="fas fa-floppy-disk"></i> Commit Strategy';
     }
 
-    function startEditMode(id) {
-        const company = companies.find(c => c.id === id);
-        if (!company) return;
-        editModeId = id;
-        companyNameInput.value = company.name;
-        companyDescInput.value = company.description || '';
-        companyUrlInput.value = company.url;
-        formTitleTextSpan.innerText = '✏️ Edit company details';
-        formIcon.className = 'fas fa-pen';
-        cancelEditBtn.style.display = 'inline-flex';
-        saveBtn.innerHTML = '<i class="fas fa-pen"></i> Update Company';
-        document.getElementById('formCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    function clearFormFields() { compNameInput.value = ''; compDescInput.value = ''; compUrlInput.value = ''; }
+
+    function switchTab(tabId) {
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active-pane'));
+        document.getElementById(tabId + 'Tab').classList.add('active-pane');
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
     }
 
-    function onSave() {
-        const name = companyNameInput.value;
-        const desc = companyDescInput.value;
-        const url = companyUrlInput.value;
-        if (editModeId !== null) {
-            updateCompany(editModeId, name, desc, url);
-            exitEditMode();
-        } else {
-            addCompany(name, desc, url);
-            resetForm();
-        }
-    }
-
-    function onClearForm() {
-        if (editModeId !== null) {
-            if (confirm("Cancel editing? All changes will be lost.")) {
-                exitEditMode();
-            }
-        } else {
-            companyNameInput.value = '';
-            companyDescInput.value = '';
-            companyUrlInput.value = '';
-        }
-    }
-
-    // search handlers
-    function updateSearch() {
-        searchQuery = searchInput.value;
-        renderGrid();
-    }
-
-    function clearSearch() {
-        searchInput.value = '';
-        searchQuery = '';
-        renderGrid();
-    }
-
-    // Event listeners
+    // Event Architecture mapping
     saveBtn.addEventListener('click', onSave);
-    clearFormBtn.addEventListener('click', onClearForm);
-    cancelEditBtn.addEventListener('click', () => exitEditMode());
-    searchInput.addEventListener('input', updateSearch);
-    clearSearchIcon.addEventListener('click', clearSearch);
+    clearFormBtn.addEventListener('click', () => editModeId !== null ? exitEditMode() : clearFormFields());
+    cancelEditBtn.addEventListener('click', exitEditMode);
+    
+    searchCompaniesInput.addEventListener('input', (e) => { companySearchQuery = e.target.value; renderCompaniesTab(); });
+    document.getElementById('clearCompanySearch').addEventListener('click', () => { searchCompaniesInput.value = ''; companySearchQuery = ''; renderCompaniesTab(); });
+    
+    searchOppInput.addEventListener('input', (e) => { oppSearchQuery = e.target.value; renderOpportunityTab(); });
+    document.getElementById('clearOppSearch').addEventListener('click', () => { searchOppInput.value = ''; oppSearchQuery = ''; renderOpportunityTab(); });
 
-    // optional: Enter key submits form (on inputs)
-    const inputs = [companyNameInput, companyDescInput, companyUrlInput];
-    inputs.forEach(inp => {
-        inp.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                onSave();
-            }
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+    });
+
+    document.getElementById('filterPillsContainer').querySelectorAll('.pill-btn').forEach(pill => {
+        pill.addEventListener('click', (e) => {
+            document.getElementById('filterPillsContainer').querySelectorAll('.pill-btn').forEach(p => p.classList.remove('active'));
+            e.target.classList.add('active');
+            activeFilter = e.target.dataset.filter;
+            renderCompaniesTab();
         });
     });
 
-    // load initial data
-    loadFromStorage();
+    // Initialize System Core Array
+    loadData();
 </script>
 </body>
 </html>
