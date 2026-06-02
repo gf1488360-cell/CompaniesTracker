@@ -34,10 +34,9 @@
             font-family: 'Inter', sans-serif;
             color: var(--text-main);
             min-height: 100vh;
-            overflow: hidden; /* Prevents body bounce, shifts scroll to tabs */
+            overflow: hidden;
         }
         
-        /* App Window Frame Layout */
         .app-wrapper {
             display: flex;
             flex-direction: column;
@@ -47,7 +46,6 @@
             position: relative;
         }
 
-        /* Fixed Top Global Header */
         .app-header {
             padding: 1.5rem 1.25rem;
             display: flex;
@@ -72,7 +70,6 @@
             gap: 10px;
         }
 
-        /* Top Action Buttons */
         .btn-action {
             background: rgba(56, 189, 248, 0.1);
             border: 1px solid rgba(56, 189, 248, 0.2);
@@ -92,7 +89,6 @@
             color: #000;
         }
 
-        /* Scrollable Dynamic Workspace Viewports */
         .view-container {
             flex: 1;
             overflow-y: auto;
@@ -103,7 +99,6 @@
             display: block;
         }
 
-        /* Grid Frameworks */
         .grid-two-column {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -119,7 +114,6 @@
             gap: 1rem;
         }
 
-        /* Core Card Architectural Components */
         .matrix-card {
             background: var(--card-glass);
             border: 1px solid var(--border-glass);
@@ -140,19 +134,16 @@
             transform: translateY(-2px);
         }
 
-        /* Card Text Mechanics */
         .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; gap: 10px; }
         .card-title { font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.3; }
         .card-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
         .card-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         
-        /* Badges */
         .badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 6px; letter-spacing: 0.5px; white-space: nowrap; }
         .badge-rank { color: var(--accent-gold); background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.15); }
         .badge-consulting { color: #e28743; background: rgba(226, 135, 67, 0.1); border: 1px solid rgba(226, 135, 67, 0.15); }
         .badge-product { color: var(--success); background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.15); }
 
-        /* External URL Deployments */
         .action-row { display: flex; gap: 8px; flex-wrap: wrap; }
         .link-anchor {
             display: inline-flex;
@@ -172,7 +163,6 @@
         .link-anchor.lnk-web { color: var(--primary); }
         .link-anchor.lnk-linkedin { color: #60a5fa; }
 
-        /* Institutional List Row Styles */
         .inst-list-item {
             background: rgba(255, 255, 255, 0.01);
             border: 1px solid var(--border-glass);
@@ -189,7 +179,6 @@
         .inst-details p { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
         .inst-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1rem; }
 
-        /* Structural Overlay Dialog Modals */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -233,7 +222,6 @@
         .btn-ui-secondary { background: rgba(255,255,255,0.05); color: var(--text-main); }
         .btn-ui-danger { background: rgba(239,68,68,0.15); color: #f87171; }
 
-        /* Fixed Bottom Ribbon Navigation Menu */
         .bottom-ribbon {
             position: fixed;
             bottom: 0; left: 0; width: 100%;
@@ -254,7 +242,6 @@
         .nav-item.active { color: var(--primary); font-weight: 600; }
         .nav-item.active i { transform: translateY(-2px); }
 
-        /* Search Infrastructure */
         .search-block { margin-bottom: 1.2rem; display: flex; background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.6rem 1rem; align-items: center; gap: 10px; }
         .search-block input { flex: 1; border: none; background: transparent; outline: none; color: #fff; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
 
@@ -265,7 +252,6 @@
 <body>
 
 <div class="app-wrapper">
-    <!-- Static Header -->
     <header class="app-header">
         <div class="brand">
             <h1>Farid <span>OppoTrack</span></h1>
@@ -276,39 +262,26 @@
         </div>
     </header>
 
-    <!-- TAB 1: HOME (READ/WRITE WORKSPACE) -->
     <main id="viewHome" class="view-container active">
         <div class="search-block">
             <i class="fas fa-magnifying-glass" style="color: var(--text-muted);"></i>
             <input type="text" id="homeSearchInput" placeholder="Filter current portfolio entries...">
         </div>
-        <div class="grid-two-column" id="homeGridContainer">
-            <!-- Programmatically Injected -->
-        </div>
+        <div class="grid-two-column" id="homeGridContainer"></div>
     </main>
 
-    <!-- TAB 2: INSTITUTIONAL TRACKS (READ ONLY) -->
     <section id="viewInstitutional" class="view-container">
-        <div class="grid-one-column" id="institutionalContainer">
-            <!-- Programmatically Injected -->
-        </div>
+        <div class="grid-one-column" id="institutionalContainer"></div>
     </section>
 
-    <!-- TAB 3: CONSULTING METRICS (READ ONLY) -->
     <section id="viewConsulting" class="view-container">
-        <div class="grid-two-column" id="consultingGridContainer">
-            <!-- Programmatically Injected -->
-        </div>
+        <div class="grid-two-column" id="consultingGridContainer"></div>
     </section>
 
-    <!-- TAB 4: PRODUCT-BASED SAAS (READ ONLY) -->
     <section id="viewProduct" class="view-container">
-        <div class="grid-two-column" id="productGridContainer">
-            <!-- Programmatically Injected -->
-        </div>
+        <div class="grid-two-column" id="productGridContainer"></div>
     </section>
 
-    <!-- Dynamic Bottom Ribbon Menu -->
     <nav class="bottom-ribbon">
         <div class="nav-inner">
             <button class="nav-item active" data-target="viewHome" data-sub="Operational Control Hub">
@@ -327,7 +300,6 @@
     </nav>
 </div>
 
-<!-- Configured Overlay Modal Form Component -->
 <div class="modal-overlay" id="assetModalOverlay">
     <div class="modal-box">
         <div class="modal-header">
@@ -373,7 +345,6 @@
 </div>
 
 <script>
-    // ----- RAW IMMUTABLE CORE REPOSITORIES -----
     const INSTITUTIONAL_DATA = [
         { name: "FPSC Career Portal", desc: "Federal Strategy & Administration Channels", url: "https://www.fpsc.gov.pk", icon: "fa-gavel" },
         { name: "FPSC AD-Level Grid", desc: "Assistant Director Recruitment Consolidated Tracks", url: "https://www.fpsc.gov.pk", icon: "fa-user-tie" },
@@ -384,22 +355,54 @@
     ];
 
     const DEFAULT_COMPANIES = [
-        { id: 1, rank: 1, name: "PwC Pakistan (A.F. Ferguson & Co.)", type: "Consulting", location: "Gulberg V", description: "Market leader in complex corporate finance restructuring, high-stakes transaction advisory, risk frameworks, and systemic enterprise growth strategy.", url: "https://www.pwc.com.pk/en/about-us/offices.html", linkedin: "https://www.linkedin.com/company/pwc-pakistan" },
-        { id: 2, rank: 2, name: "EY Ford Rhodes", type: "Consulting", location: "Gulberg II", description: "Top-tier operational turnarounds, structural market transactions, macro-level strategic planning models, and premium institutional business consulting.", url: "https://www.ey.com/en_gl/locations/pakistan", linkedin: "https://www.linkedin.com/company/ey" },
-        { id: 3, rank: 3, name: "KPMG Taseer Hadi & Co.", type: "Consulting", location: "Gulberg II", description: "Specialized management consulting wings focusing heavily on institutional risk management frameworks, strategic evaluations, and structural merger advisory.", url: "https://kpmg.com/pk/en/home.html", linkedin: "https://www.linkedin.com/company/kpmg-pakistan" },
-        { id: 4, rank: 4, name: "Yousuf Adil", type: "Consulting", location: "Gulberg III", description: "Premium corporate finance hub specializing in large-scale infrastructure capital projects, financial feasibility modeling, and performance analytics.", url: "https://yousufadil.com/careers/", linkedin: "https://www.linkedin.com/company/yousuf-adil" },
-        { id: 5, rank: 5, name: "Abacus Consulting", type: "Consulting", location: "Egerton Road", description: "Largest domestic digital transformation strategy practice. Specializes in global enterprise target architecture, scaling metrics, and SAP strategy consulting.", url: "https://www.abacus-global.com/careers", linkedin: "https://www.linkedin.com/company/abacus-consulting" },
-        { id: 6, rank: 1, name: "Motive (KeepTruckin)", type: "Product", location: "Gulberg II", description: "Global Silicon Valley flagship scaling AI-driven fleet infrastructure, fleet metrics SaaS, and advanced custom telematics systems with elite local PM tracks.", url: "https://gomotive.com/company/careers/", linkedin: "https://www.linkedin.com/company/gomotive" },
-        { id: 7, rank: 2, name: "Educative.io", type: "Product", location: "Gulberg III", description: "Highly dynamic cloud B2B developer education SaaS platform managing real-time runtime engine interfaces, running complete engineering-to-product tracks locally.", url: "https://www.educative.io/careers", linkedin: "https://www.linkedin.com/company/educative-inc" },
-        { id: 8, rank: 3, name: "NetSol Technologies", type: "Product", location: "Ring Road Hub", description: "Global asset financial computing giant. Owns proprietary 'NFS Ascent' infrastructure managing tier-1 global asset leasing configurations.", url: "https://netsoltech.com/careers", linkedin: "https://www.linkedin.com/company/netsol-technologies-inc-" },
-        { id: 9, rank: 4, name: "Systems Limited", type: "Product", location: "DHA Phase 8", description: "Largest tech ecosystem engine in the country. Owns unique domestic banking core platforms, retail configurations, and custom ERP product layers.", url: "https://www.systemsltd.com/careers", linkedin: "https://www.linkedin.com/company/systemsltd" },
-        { id: 10, rank: 5, name: "Arbisoft", type: "Product", location: "DHA Phase 8", description: "Premium agile product scaling infrastructure operating massive customized SaaS instances, international platforms, and high-throughput routing algorithms.", url: "https://arbisoft.com/careers/", linkedin: "https://www.linkedin.com/company/arbisoft" }
+        // --- CONSULTING & ADVISORY (1-20) ---
+        { id: 1, rank: 1, name: "McKinsey & Company", type: "Consulting", location: "Lahore Hub", description: "Elite presence driving high-level corporate planning, structural organizational design, and complex public sector turnarounds.", url: "https://www.mckinsey.com/careers", linkedin: "https://www.linkedin.com/company/mckinsey" },
+        { id: 2, rank: 2, name: "Boston Consulting Group (BCG)", type: "Consulting", location: "Lahore Hub", description: "Top-tier strategy house handling market entry frameworks, capital optimization, and digital business infrastructure operations.", url: "https://www.bcg.com/careers", linkedin: "https://www.linkedin.com/company/boston-consulting-group" },
+        { id: 3, rank: 3, name: "Abacus Consulting", type: "Consulting", location: "Egerton Road / DHA", description: "Domestic champion in digital enterprise transformations, macro-scale SAP architecture planning, and executive business strategy.", url: "https://www.abacus-global.com/careers", linkedin: "https://www.linkedin.com/company/abacus-consulting" },
+        { id: 4, rank: 4, name: "PwC Pakistan (A.F. Ferguson & Co.)", type: "Consulting", location: "Gulberg V", description: "Market leader in financial system auditing, complex corporate transaction advisory, and high-stakes risk infrastructure frameworks.", url: "https://www.pwc.com.pk/en/about-us/offices.html", linkedin: "https://www.linkedin.com/company/pwc-pakistan" },
+        { id: 5, rank: 5, name: "EY Ford Rhodes", type: "Consulting", location: "Gulberg II", description: "Big 4 titan optimizing transaction strategy, corporate performance monitoring matrices, and systemic cross-border capital engineering.", url: "https://www.ey.com/en_gl/locations/pakistan", linkedin: "https://www.linkedin.com/company/ey" },
+        { id: 6, rank: 6, name: "Deloitte Pakistan (Yousuf Adil)", type: "Consulting", location: "Gulberg III", description: "Specialized corporate financial advisory hub mapping out infrastructure capital assets and large conglomerate feasibility blueprints.", url: "https://yousufadil.com/careers/", linkedin: "https://www.linkedin.com/company/yousuf-adil" },
+        { id: 7, rank: 7, name: "KPMG Taseer Hadi & Co.", type: "Consulting", location: "Gulberg II", description: "Enterprise risk advisory pioneers handling global management compliance architectures and structural data auditing frameworks.", url: "https://kpmg.com/pk/en/home.html", linkedin: "https://www.linkedin.com/company/kpmg-pakistan" },
+        { id: 8, rank: 8, name: "Techlogix", type: "Consulting", location: "Gulberg III", description: "Bridges global corporate process advisory with high-level software transformation frameworks and enterprise platform deployments.", url: "https://www.techlogix.com/careers", linkedin: "https://www.linkedin.com/company/techlogix" },
+        { id: 9, rank: 9, name: "Systems Limited (Consulting Div.)", type: "Consulting", location: "DHA Phase 8", description: "Strategic implementation wing scaling global enterprise structural alignments, digital ecosystems, and operational workflows.", url: "https://www.systemsltd.com/careers", linkedin: "https://www.linkedin.com/company/systemsltd" },
+        { id: 10, rank: 10, name: "SKP Group", type: "Consulting", location: "Main Boulevard", description: "Elite business appraisal mechanics, corporate legal structures, compliance systems, and high-end asset tracking advisory.", url: "http://www.skpgroup.com", linkedin: "https://www.linkedin.com/company/skp-group" },
+        { id: 11, rank: 11, name: "BDO Pakistan", type: "Consulting", location: "Ferozepur Road", description: "Bespoke transactional risk assessment, performance analytics systems, and mid-market private equity valuation frameworks.", url: "https://www.bdo.com.pk/en-gb/careers", linkedin: "https://www.linkedin.com/company/bdo-pakistan" },
+        { id: 12, rank: 12, name: "Grant Thornton Anjum Rahman", type: "Consulting", location: "Gulberg III", description: "Corporate governance advisory setups designing organizational efficiency metrics and deep strategic market-entry valuation maps.", url: "https://www.grantthornton.pk", linkedin: "https://www.linkedin.com/company/grant-thornton-pakistan" },
+        { id: 13, rank: 13, name: "Contech International", type: "Consulting", location: "Link Road", description: "Premium research design agency advising international NGOs and macro public institutions on operational framework metrics.", url: "http://www.contech7.com", linkedin: "https://www.linkedin.com/company/contech-international" },
+        { id: 14, rank: 14, name: "Allied Engineering Consultants", type: "Consulting", location: "Model Town", description: "Heavy industrial asset advisory, large infrastructure project strategies, and operational capital allocation models.", url: "http://www.aec-pakistan.com", linkedin: "https://www.linkedin.com/company/allied-engineering-consultants" },
+        { id: 15, rank: 15, name: "ThinkFaculty", type: "Consulting", location: "DHA Phase 5", description: "Specialized corporate performance and pipeline development advisory optimizing executive growth loops and internal operations.", url: "https://www.thinkfaculty.com", linkedin: "https://www.linkedin.com/company/thinkfaculty" },
+        { id: 16, rank: 16, name: "PITB (Consulting Division)", type: "Consulting", location: "Arfa Software Technology Park", description: "The strategic architect behind public-sector technical infrastructure layout engineering and digitized provincial tracking assets.", url: "https://pitb.gov.pk", linkedin: "https://www.linkedin.com/company/punjab-it-board" },
+        { id: 17, rank: 17, name: "Crowe Pakistan", type: "Consulting", location: "Gulberg II", description: "Corporate recovery frameworks, specialized legal planning parameters, and corporate asset restructuring systems.", url: "https://www.crowe.com/pk/careers", linkedin: "https://www.linkedin.com/company/crowe-pakistan" },
+        { id: 18, rank: 18, name: "Nexus Consulting", type: "Consulting", location: "Cavalry Ground", description: "Boutique analytical tracker structuring commercial market penetration models and localized business feasibility frameworks.", url: "http://www.nexusconsulting.com.pk", linkedin: "https://www.linkedin.com/company/nexus-consulting-pakistan" },
+        { id: 19, rank: 19, name: "HR Metrics", type: "Consulting", location: "Lahore Desk", description: "Analytical data-driven human capital advisory focusing on structural compliance and operational governance benchmarks.", url: "https://thehrmetrics.com", linkedin: "https://www.linkedin.com/company/thehrmetrics" },
+        { id: 20, rank: 20, name: "MNBEC", type: "Consulting", location: "DHA Phase 5", description: "Elite boutique focusing on multi-conglomerate family governance models, corporate planning asset schemes, and business legacy restructuring.", url: "https://mnbec.com/", linkedin: "https://www.linkedin.com/company/mnbec" },
+
+        // --- PRODUCT-BASED TECH (21-40) ---
+        { id: 21, rank: 1, name: "NETSOL Technologies", type: "Product", location: "Ring Road Hub", description: "NASDAQ-listed giant. Designs and deploys the proprietary 'NFS Ascent' system, which dominates global asset finance software architecture.", url: "https://netsoltech.com/careers", linkedin: "https://www.linkedin.com/company/netsol-technologies-inc-" },
+        { id: 22, rank: 2, name: "Motive (KeepTruckin)", type: "Product", location: "Gulberg II", description: "Silicon Valley titan building AI-driven physical infrastructure telematics, asset hardware integration tracking, and heavy fleet SaaS platforms.", url: "https://gomotive.com/company/careers/", linkedin: "https://www.linkedin.com/company/gomotive" },
+        { id: 23, rank: 3, name: "Educative.io", type: "Product", location: "Gulberg III", description: "Global developer learning ecosystem. Manages advanced browser-based container compiler logic engines scaled entirely from Lahore.", url: "https://www.educative.io/careers", linkedin: "https://www.linkedin.com/company/educative-inc" },
+        { id: 24, rank: 4, name: "Arbisoft", type: "Product", location: "DHA Phase 8", description: "Elite scalable software refining engine building structural platform models, cloud instances, and massive big-data applications.", url: "https://arbisoft.com/careers/", linkedin: "https://www.linkedin.com/company/arbisoft" },
+        { id: 25, rank: 5, name: "Conrad Labs", type: "Product", location: "Model Town Link Rd", description: "US venture-backed product refinery incubating high-conviction architecture models and refining infrastructure SaaS operations.", url: "https://www.conradlabs.com/careers/", linkedin: "https://www.linkedin.com/company/conrad-labs" },
+        { id: 26, rank: 6, name: "Zameen.com (EMPG)", type: "Product", location: "Gulberg III", description: "PropTech ecosystem leader engineering real-estate data graphs, geo-mapping matrices, and structural digital transaction systems.", url: "https://www.zameen.com/careers", linkedin: "https://www.linkedin.com/company/zameen-com" },
+        { id: 27, rank: 7, name: "PakWheels", type: "Product", location: "Gulberg III", description: "Automotive transaction infrastructure hub owning localized inventory analytics, price valuation frameworks, and automated inspection platforms.", url: "https://pakeventures.simplicant.com/", linkedin: "https://www.linkedin.com/company/pakwheels" },
+        { id: 28, rank: 8, name: "VentureDive", type: "Product", location: "Gulberg V", description: "High-throughput systems architecture setup renowned for constructing core transport, logistics, and transactional engines for regional scaling giants.", url: "https://www.venturedive.com/careers/", linkedin: "https://www.linkedin.com/company/venturedive" },
+        { id: 29, rank: 9, name: "Data Pilot", type: "Product", location: "DHA Phase 6", description: "Specialized data analytics laboratory architecting business intelligence products, data transformation pipelines, and custom AI orchestration loops.", url: "https://www.datapilot.com/careers", linkedin: "https://www.linkedin.com/company/data-pilot" },
+        { id: 30, rank: 10, name: "Ebryx", type: "Product", location: "Johar Town", description: "Cybersecurity infrastructure specialist developing managed detection algorithms, automated firmware defenses, and edge safety products.", url: "https://www.ebryx.com/careers", linkedin: "https://www.linkedin.com/company/ebryx" },
+        { id: 31, rank: 11, name: "Tkxel", type: "Product", location: "DHA Phase 3", description: "High-velocity cloud integration and digital SaaS optimization engine deploying software assets for international enterprise segments.", url: "https://tkxel.com/careers/", linkedin: "https://www.linkedin.com/company/tkxel" },
+        { id: 32, rank: 12, name: "Sastaticket", type: "Product", location: "Gulberg Hub", description: "High-volume transactional travel API routing engine managing complex third-party global airline and hospitality distribution modules.", url: "https://www.sastaticket.pk", linkedin: "https://www.linkedin.com/company/sastaticket.pk" },
+        { id: 33, rank: 13, name: "Mindstorm Studios", type: "Product", location: "Gulberg III", description: "Elite gaming infrastructure setup rendering hyper-scalable logic platforms and real-time multiplayer coordination software configurations.", url: "https://www.mindstormstudios.com", linkedin: "https://www.linkedin.com/company/mindstorm-studios" },
+        { id: 34, rank: 14, name: "Config", type: "Product", location: "DHA Phase 5", description: "International digital product studio scaling multi-market web dashboards and specialized SaaS system portals.", url: "https://www.config.co", linkedin: "https://www.linkedin.com/company/config-inc" },
+        { id: 35, rank: 15, name: "Bramerz", type: "Product", location: "DHA Phase 4", description: "MarTech automation product pioneers constructing digital customer journey funnels and real-time localized optimization tools.", url: "https://bramerz.pk", linkedin: "https://www.linkedin.com/company/bramerz" },
+        { id: 36, rank: 16, name: "Folio3", type: "Product", location: "Cavalry Hub", description: "AgriTech and multi-tenant ERP system customization designers deploying advanced vertical data integration scripts.", url: "https://www.folio3.com", linkedin: "https://www.linkedin.com/company/folio3" },
+        { id: 37, rank: 17, name: "InvoZone", type: "Product", location: "Gulberg V", description: "Fintech payment processing pipeline developers and automated asset transaction layer architect houses.", url: "https://invozone.com/careers/", linkedin: "https://www.linkedin.com/company/invozone" },
+        { id: 38, rank: 18, name: "Tintash", type: "Product", location: "Model Town", description: "Premium agile product design boutique tracking complex interface layouts and clean operational code logic frameworks for US tech entities.", url: "https://www.tintash.com/careers", linkedin: "https://www.linkedin.com/company/tintash" },
+        { id: 39, rank: 19, name: "FiveRivers Technologies", type: "Product", location: "Ferozepur Rd", description: "Enterprise dashboard builders focusing on heavy machine data visualization architectures and predictive pipeline tools.", url: "https://fiveriverstech.com", linkedin: "https://www.linkedin.com/company/fiveriverstechnologies" },
+        { id: 40, rank: 20, name: "Cubix", type: "Product", location: "Lahore Center", description: "Digital mobile product infrastructure architects scaling localized consumer application models and distributed asset mechanics.", url: "https://www.cubix.co", linkedin: "https://www.linkedin.com/company/cubix" }
     ];
 
     let portfolio = [];
     let searchFilter = "";
 
-    // DOM Links Mapping
     const homeGrid = document.getElementById('homeGridContainer');
     const consultGrid = document.getElementById('consultingGridContainer');
     const prodGrid = document.getElementById('productGridContainer');
@@ -407,7 +410,6 @@
     const viewSubtitle = document.getElementById('viewSubtitle');
     const headerActionZone = document.getElementById('headerActionZone');
     
-    // Form Mapping
     const modalOverlay = document.getElementById('assetModalOverlay');
     const assetIdInp = document.getElementById('formAssetId');
     const attrNameInp = document.getElementById('formAttrName');
@@ -426,13 +428,10 @@
     function verifyUrl(url) {
         if (!url) return '';
         let clean = url.trim();
-        if (clean && !clean.startsWith('http')) {
-            clean = 'https://' + clean;
-        }
+        if (clean && !clean.startsWith('http')) clean = 'https://' + clean;
         return clean;
     }
 
-    // Engine Framework Cache Hooks
     function initDatabase() {
         const cached = localStorage.getItem('farid_oppotrack_db');
         if(cached) {
@@ -448,7 +447,6 @@
         renderActiveViews();
     }
 
-    // Navigation Context State Manager
     document.querySelectorAll('.nav-item').forEach(btn => {
         btn.addEventListener('click', (e) => {
             const currentTab = e.currentTarget;
@@ -460,19 +458,11 @@
             document.getElementById(targetViewId).classList.add('active');
             
             viewSubtitle.innerText = currentTab.dataset.sub;
-
-            // Header actions switch validation
-            if (targetViewId === 'viewHome') {
-                headerActionZone.style.visibility = 'visible';
-            } else {
-                headerActionZone.style.visibility = 'hidden';
-            }
+            headerActionZone.style.visibility = (targetViewId === 'viewHome') ? 'visible' : 'hidden';
         });
     });
 
-    // Unified Views Factory
     function renderActiveViews() {
-        // --- 1. VIEW HOME (MUTABLE DUAL COLUMN) ---
         const cleanQuery = searchFilter.trim().toLowerCase();
         const filteredHome = portfolio.filter(c => 
             !cleanQuery || 
@@ -492,7 +482,7 @@
                             <span class="badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
                         </div>
                         <div class="card-meta">
-                            ${comp.rank ? `<span class="badge badge-rank"><i class="fas fa-crown"></i> Rank #${comp.rank}</span>` : ''}
+                            ${comp.rank ? `<span class="badge badge-rank"><i class="fas fa-crown"></i> Hierarchy #${comp.rank}</span>` : ''}
                             ${comp.location ? `<span><i class="fas fa-location-dot"></i> ${escapeHtml(comp.location)}</span>` : ''}
                         </div>
                         <p class="card-desc">${escapeHtml(comp.description || 'No strategic narrative committed.')}</p>
@@ -501,7 +491,6 @@
             `).join('');
         }
 
-        // --- 2. VIEW INSTITUTIONAL (READ-ONLY ROWS) ---
         instContainer.innerHTML = INSTITUTIONAL_DATA.map(inst => `
             <div class="inst-list-item">
                 <div style="display: flex; align-items: center; gap: 14px;">
@@ -515,21 +504,11 @@
             </div>
         `).join('');
 
-        // --- 3. VIEW CONSULTING (READ-ONLY) ---
         const consultants = portfolio.filter(c => c.type === 'Consulting');
-        if(consultants.length === 0) {
-            consultGrid.innerHTML = `<div class="empty-view-state"><i class="fas fa-folder-open"></i>No Advisory metrics logged.</div>`;
-        } else {
-            consultGrid.innerHTML = consultants.map(comp => generateReadOnlyCard(comp)).join('');
-        }
+        consultGrid.innerHTML = consultants.length === 0 ? `<div class="empty-view-state"><i class="fas fa-folder-open"></i>No Advisory metrics logged.</div>` : consultants.map(comp => generateReadOnlyCard(comp)).join('');
 
-        // --- 4. VIEW PRODUCT (READ-ONLY) ---
         const products = portfolio.filter(c => c.type === 'Product');
-        if(products.length === 0) {
-            prodGrid.innerHTML = `<div class="empty-view-state"><i class="fas fa-folder-open"></i>No Product suites logged.</div>`;
-        } else {
-            prodGrid.innerHTML = products.map(comp => generateReadOnlyCard(comp)).join('');
-        }
+        prodGrid.innerHTML = products.length === 0 ? `<div class="empty-view-state"><i class="fas fa-folder-open"></i>No Product suites logged.</div>` : products.map(comp => generateReadOnlyCard(comp)).join('');
     }
 
     function generateReadOnlyCard(comp) {
@@ -555,98 +534,43 @@
         `;
     }
 
-    // Modal Control Logic
     function clearForm() {
-        assetIdInp.value = '';
-        attrNameInp.value = '';
-        attrLocInp.value = '';
-        attrUrlInp.value = '';
-        attrLnkInp.value = '';
-        attrDescInp.value = '';
-        attrTypeInp.value = 'Consulting';
+        assetIdInp.value = ''; attrNameInp.value = ''; attrLocInp.value = ''; attrUrlInp.value = ''; attrLnkInp.value = ''; attrDescInp.value = ''; attrTypeInp.value = 'Consulting';
     }
 
     document.getElementById('openAddModalBtn').addEventListener('click', () => {
-        clearForm();
-        document.getElementById('modalTitleText').innerText = "Inject Target Asset";
-        deleteBtn.style.display = 'none';
-        modalOverlay.classList.add('active');
+        clearForm(); document.getElementById('modalTitleText').innerText = "Inject Target Asset"; deleteBtn.style.display = 'none'; modalOverlay.classList.add('active');
     });
 
     window.launchEditModal = function(id) {
-        const comp = portfolio.find(c => c.id === id);
-        if(!comp) return;
-        
-        assetIdInp.value = comp.id;
-        attrNameInp.value = comp.name || '';
-        attrTypeInp.value = comp.type || 'Consulting';
-        attrLocInp.value = comp.location || '';
-        attrUrlInp.value = comp.url || '';
-        attrLnkInp.value = comp.linkedin || '';
-        attrDescInp.value = comp.description || '';
-
-        document.getElementById('modalTitleText').innerText = "Modify Core Parameters";
-        deleteBtn.style.display = 'inline-flex';
-        modalOverlay.classList.add('active');
+        const comp = portfolio.find(c => c.id === id); if(!comp) return;
+        assetIdInp.value = comp.id; attrNameInp.value = comp.name || ''; attrTypeInp.value = comp.type || 'Consulting'; attrLocInp.value = comp.location || ''; attrUrlInp.value = comp.url || ''; attrLnkInp.value = comp.linkedin || ''; attrDescInp.value = comp.description || '';
+        document.getElementById('modalTitleText').innerText = "Modify Core Parameters"; deleteBtn.style.display = 'inline-flex'; modalOverlay.classList.add('active');
     };
 
-    function hideModal() {
-        modalOverlay.classList.remove('active');
-        clearForm();
-    }
-
+    function hideModal() { modalOverlay.classList.remove('active'); clearForm(); }
     document.getElementById('closeModalBtn').addEventListener('click', hideModal);
     document.getElementById('cancelModalBtn').addEventListener('click', hideModal);
 
-    // Commit Mutation Form Actions
     document.getElementById('saveAssetBtn').addEventListener('click', () => {
-        const name = attrNameInp.value.trim();
-        const url = attrUrlInp.value.trim();
-        if(!name || !url) { alert("Core specifications missing."); return; }
-
+        const name = attrNameInp.value.trim(); const url = attrUrlInp.value.trim(); if(!name || !url) { alert("Core specifications missing."); return; }
         const id = assetIdInp.value;
-        const assetData = {
-            name,
-            type: attrTypeInp.value,
-            location: attrLocInp.value.trim(),
-            url: verifyUrl(url),
-            linkedin: verifyUrl(lknLink = attrLnkInp.value.trim()),
-            description: attrDescInp.value.trim()
-        };
+        const assetData = { name, type: attrTypeInp.value, location: attrLocInp.value.trim(), url: verifyUrl(url), linkedin: verifyUrl(attrLnkInp.value.trim()), description: attrDescInp.value.trim() };
 
         if(id) {
-            // Update Existing Track
-            const idx = portfolio.findIndex(c => c.id == id);
-            if(idx !== -1) {
-                portfolio[idx] = { ...portfolio[idx], ...assetData };
-            }
+            const idx = portfolio.findIndex(c => c.id == id); if(idx !== -1) portfolio[idx] = { ...portfolio[idx], ...assetData };
         } else {
-            // Append New Record
-            assetData.id = Date.now();
-            assetData.rank = null;
-            portfolio.push(assetData);
+            assetData.id = Date.now(); assetData.rank = null; portfolio.push(assetData);
         }
-
-        hideModal();
-        syncDataAndRender();
+        hideModal(); syncDataAndRender();
     });
 
     deleteBtn.addEventListener('click', () => {
-        const id = assetIdInp.value;
-        if(id && confirm("Purge entry entirely from engine tracking matrix?")) {
-            portfolio = portfolio.filter(c => c.id != id);
-            hideModal();
-            syncDataAndRender();
-        }
+        const id = assetIdInp.value; if(id && confirm("Purge entry entirely from engine tracking matrix?")) { portfolio = portfolio.filter(c => c.id != id); hideModal(); syncDataAndRender(); }
     });
 
-    // Real-time Filtering Engine Hooks
-    document.getElementById('homeSearchInput').addEventListener('input', (e) => {
-        searchFilter = e.target.value;
-        renderActiveViews();
-    });
+    document.getElementById('homeSearchInput').addEventListener('input', (e) => { searchFilter = e.target.value; renderActiveViews(); });
 
-    // Boot Command
     initDatabase();
 </script>
 </body>
