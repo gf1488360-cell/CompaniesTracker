@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Nexora Elite | Corporate Strategy & Product Matrix</title>
+    <title>Farid OppoTrack | Elite Strategy Matrix</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -14,714 +14,640 @@
             -webkit-tap-highlight-color: transparent;
         }
         :root {
-            --bg-main: #0b0f19;
-            --panel-glass: rgba(17, 24, 39, 0.7);
-            --card-glass: rgba(30, 41, 59, 0.45);
-            --border-glass: rgba(255, 255, 255, 0.06);
-            --border-glow: rgba(38, 100, 147, 0.2);
+            --bg-main: #070a13;
+            --panel-glass: rgba(13, 18, 33, 0.75);
+            --card-glass: rgba(22, 32, 54, 0.45);
+            --border-glass: rgba(255, 255, 255, 0.05);
             --primary: #38bdf8;
-            --primary-muted: #1e40af;
             --accent-gold: #fbbf24;
             --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --text-muted: #64748b;
             --success: #10b981;
+            --danger: #ef4444;
+            --nav-height: 70px;
         }
         body {
             background-color: var(--bg-main);
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 50% -20%, rgba(14, 165, 233, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 0% 100%, rgba(124, 58, 237, 0.04) 0%, transparent 40%);
             font-family: 'Inter', sans-serif;
-            padding: 2rem 1rem;
             color: var(--text-main);
             min-height: 100vh;
-            line-height: 1.6;
+            overflow: hidden; /* Prevents body bounce, shifts scroll to tabs */
         }
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-        }
-        .header {
-            margin-bottom: 3rem;
-            text-align: left;
-            border-left: 4px solid var(--primary);
-            padding-left: 1.5rem;
-        }
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            color: #fff;
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-        }
-        .header h1 span { color: var(--primary); }
-        .header p {
-            color: var(--text-muted);
-            margin-top: 0.4rem;
-            font-size: 1.1rem;
-            font-weight: 400;
-        }
-
-        /* Institutional Portal Deck */
-        .portal-deck {
-            background: var(--panel-glass);
-            border: 1px solid var(--border-glass);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 1.5rem;
-            margin-bottom: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-        }
-        .portal-deck-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--accent-gold);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-        }
-        .portal-card {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.25s ease;
-        }
-        .portal-card:hover {
-            background: rgba(56, 189, 248, 0.08);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-        .portal-info h4 { font-size: 0.95rem; font-weight: 600; }
-        .portal-info p { font-size: 0.75rem; color: var(--text-muted); }
-        .portal-icon { width: 36px; height: 36px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: var(--primary); }
-
-        /* Metrics Bar */
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
-        }
-        .stat-card {
-            background: var(--panel-glass);
-            border-radius: 20px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            border: 1px solid var(--border-glass);
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::after {
-            content: ''; position: absolute; top:0; left:0; width: 4px; height: 100%;
-        }
-        .stat-card.total-v::after { background: var(--primary); }
-        .stat-card.consult-v::after { background: #c084fc; }
-        .stat-card.product-v::after { background: var(--success); }
         
-        .stat-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
+        /* App Window Frame Layout */
+        .app-wrapper {
             display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Fixed Top Global Header */
+        .app-header {
+            padding: 1.5rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
+            border-bottom: 1px solid var(--border-glass);
+            background: rgba(7, 10, 19, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 10;
+        }
+        .brand h1 {
             font-size: 1.4rem;
-            background: rgba(255,255,255,0.03);
-        }
-        .stat-val { font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1.2; }
-        .stat-lbl { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* Dynamic Main View Architecture */
-        .workspace-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-        @media (min-width: 1024px) {
-            .workspace-layout { grid-template-columns: 320px 1fr; align-items: start; }
-        }
-
-        /* Sidebar Control Form */
-        .form-card {
-            background: var(--panel-glass);
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-            padding: 1.75rem;
-            border: 1px solid var(--border-glass);
-            position: sticky;
-            top: 2rem;
-        }
-        .form-title {
             font-weight: 700;
-            font-size: 1.15rem;
-            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+        .brand h1 span { color: var(--primary); }
+        .brand p { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+
+        .header-actions {
             display: flex;
             align-items: center;
             gap: 10px;
-            color: #fff;
         }
-        .input-group { margin-bottom: 1.25rem; }
-        .input-group label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            margin-bottom: 0.5rem;
-        }
-        .input-group input, .input-group textarea, .input-group select {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-glass);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
-            color: #fff;
-            background: rgba(15, 23, 42, 0.6);
-            transition: all 0.2s ease;
-        }
-        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
-        }
-        
-        .btn {
-            width: 100%;
-            border: none;
-            padding: 0.85rem 1.5rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.2s ease;
-            margin-bottom: 0.75rem;
-        }
-        .btn-primary { background: var(--primary); color: #0f172a; }
-        .btn-primary:hover { background: #7dd3fc; transform: translateY(-1px); }
-        .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-glass); }
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-        .btn-danger { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
-        .btn-danger:hover { background: rgba(239, 68, 68, 0.25); }
 
-        /* Filter Row Toolbar */
-        .filter-controls {
-            background: var(--panel-glass);
-            padding: 1rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            margin-bottom: 2rem;
-            border: 1px solid var(--border-glass);
+        /* Top Action Buttons */
+        .btn-action {
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+        .btn-action:hover {
+            background: var(--primary);
+            color: #000;
+        }
+
+        /* Scrollable Dynamic Workspace Viewports */
+        .view-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.25rem 1.25rem calc(var(--nav-height) + 1.5rem);
+            display: none;
+        }
+        .view-container.active {
+            display: block;
+        }
+
+        /* Grid Frameworks */
+        .grid-two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .grid-two-column { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .grid-one-column {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
-        }
-        .filter-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .pill-btn {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-glass);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .pill-btn.active { background: rgba(56, 189, 248, 0.15); color: var(--primary); border-color: var(--primary); }
-        
-        .search-box {
-            background: rgba(15, 23, 42, 0.6);
-            border-radius: 12px;
-            padding: 0.6rem 1rem;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid var(--border-glass);
-        }
-        .search-box input { flex: 1; border: none; background: transparent; outline: none; font-size: 0.95rem; color: #fff; }
-        
-        @media (min-width: 768px) {
-            .filter-controls { flex-direction: row; justify-content: space-between; align-items: center; }
-            .search-box { width: 320px; }
+            gap: 1rem;
         }
 
-        /* Glass Cards Grid Architecture */
-        .companies-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        @media (min-width: 640px) { .companies-grid { grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); } }
-        
-        .company-card {
+        /* Core Card Architectural Components */
+        .matrix-card {
             background: var(--card-glass);
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 1.25rem;
+            position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
-        .company-card:hover { 
-            transform: translateY(-5px); 
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.08);
+        .matrix-card.interactive {
+            cursor: pointer;
         }
-        .card-content { padding: 1.75rem; }
-        
-        .card-meta-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
-        .company-name { font-size: 1.3rem; font-weight: 700; color: #fff; letter-spacing: -0.4px; line-height: 1.3; margin-top: 0.25rem; }
-        
-        .rank-badge { font-size: 0.7rem; font-weight: 700; color: var(--accent-gold); background: rgba(251, 191, 36, 0.1); border: 1px solid rgba(251, 191, 36, 0.2); padding: 0.25rem 0.6rem; border-radius: 8px; margin-bottom: 0.5rem; display: inline-flex; align-items: center; gap: 4px; }
-        .location-tag { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px; }
-        
-        .type-badge {
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 0.3rem 0.7rem;
-            border-radius: 30px;
-            letter-spacing: 0.5px;
+        .matrix-card.interactive:hover {
+            border-color: rgba(56, 189, 248, 0.25);
+            background: rgba(30, 41, 59, 0.5);
+            transform: translateY(-2px);
         }
-        .badge-consulting { background: rgba(192, 132, 252, 0.12); color: #e9d5ff; border: 1px solid rgba(192, 132, 252, 0.2); }
-        .badge-product { background: rgba(16, 185, 129, 0.12); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.2); }
+
+        /* Card Text Mechanics */
+        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; gap: 10px; }
+        .card-title { font-size: 1.05rem; font-weight: 700; color: #fff; line-height: 1.3; }
+        .card-meta { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .card-desc { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         
-        .company-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin: 1rem 0 1.5rem; }
-        
-        .link-cluster { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .company-link {
+        /* Badges */
+        .badge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; padding: 0.25rem 0.5rem; border-radius: 6px; letter-spacing: 0.5px; white-space: nowrap; }
+        .badge-rank { color: var(--accent-gold); background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.15); }
+        .badge-consulting { color: #e28743; background: rgba(226, 135, 67, 0.1); border: 1px solid rgba(226, 135, 67, 0.15); }
+        .badge-product { color: var(--success); background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.15); }
+
+        /* External URL Deployments */
+        .action-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .link-anchor {
             display: inline-flex;
             align-items: center;
             gap: 6px;
             background: rgba(255,255,255,0.03);
             border: 1px solid var(--border-glass);
-            padding: 0.5rem 1rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
             font-weight: 600;
             text-decoration: none;
             color: var(--text-main);
             transition: all 0.2s ease;
         }
-        .company-link.careers-lnk:hover { background: var(--primary); color: #0f172a; border-color: var(--primary); }
-        .company-link.linkedin-lnk { color: #60a5fa; }
-        .company-link.linkedin-lnk:hover { background: #2563eb; color: white; border-color: #2563eb; }
-        
-        .card-actions {
+        .link-anchor:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+        .link-anchor.lnk-web { color: var(--primary); }
+        .link-anchor.lnk-linkedin { color: #60a5fa; }
+
+        /* Institutional List Row Styles */
+        .inst-list-item {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-glass);
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
             display: flex;
-            justify-content: flex-end;
-            gap: 8px;
-            padding: 1rem 1.75rem;
-            border-top: 1px solid var(--border-glass);
-            background: rgba(15, 23, 42, 0.3);
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            transition: background 0.2s ease;
         }
-        .card-actions .btn { width: auto; margin-bottom: 0; }
-        .empty-state { text-align: center; padding: 5rem 2rem; background: var(--panel-glass); border-radius: 24px; color: var(--text-muted); border: 1px solid var(--border-glass); grid-column: 1 / -1; }
-        .empty-state i { font-size: 3rem; margin-bottom: 1.5rem; color: rgba(255,255,255,0.05); }
+        .inst-list-item:hover { background: rgba(255,255,255,0.02); }
+        .inst-details h4 { font-size: 0.95rem; font-weight: 600; color: #fff; }
+        .inst-details p { font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; }
+        .inst-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.03); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 1rem; }
+
+        /* Structural Overlay Dialog Modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(3, 5, 10, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-box {
+            background: #0d1221;
+            border: 1px solid var(--border-glass);
+            width: 100%;
+            max-width: 500px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+            animation: modalShow 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes modalShow { from { transform: translateY(15px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
-        footer { margin-top: 5rem; text-align: center; font-size: 0.8rem; color: var(--text-muted); padding-bottom: 2rem; border-top: 1px solid var(--border-glass); padding-top: 2rem; }
+        .modal-header { padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-glass); display: flex; justify-content: space-between; align-items: center; }
+        .modal-header h3 { font-size: 1.15rem; font-weight: 700; color: #fff; }
+        .close-modal-trigger { background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; cursor: pointer; }
+        .close-modal-trigger:hover { color: #fff; }
+
+        .modal-body { padding: 1.5rem; max-height: 70vh; overflow-y: auto; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group label { display: block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid var(--border-glass); font-family: 'Inter', sans-serif; font-size: 0.85rem; color: #fff; background: rgba(7, 10, 19, 0.5); outline: none;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--primary); }
+        
+        .modal-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--border-glass); display: flex; gap: 10px; justify-content: flex-end; background: rgba(7, 10, 19, 0.3); }
+        .btn-ui { padding: 0.6rem 1.2rem; border-radius: 10px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; }
+        .btn-ui-primary { background: var(--primary); color: #000; }
+        .btn-ui-secondary { background: rgba(255,255,255,0.05); color: var(--text-main); }
+        .btn-ui-danger { background: rgba(239,68,68,0.15); color: #f87171; }
+
+        /* Fixed Bottom Ribbon Navigation Menu */
+        .bottom-ribbon {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            height: var(--nav-height);
+            background: rgba(13, 18, 33, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-glass);
+            z-index: 90;
+        }
+        .nav-inner {
+            max-width: 600px; margin: 0 auto; height: 100%; display: flex; justify-content: space-around; align-items: center; padding: 0 1rem;
+        }
+        .nav-item {
+            background: transparent; border: none; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); cursor: pointer; width: 64px; height: 100%; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 500; gap: 4px; transition: color 0.2s ease;
+        }
+        .nav-item i { font-size: 1.2rem; transition: transform 0.2s ease; }
+        .nav-item:hover { color: var(--text-main); }
+        .nav-item.active { color: var(--primary); font-weight: 600; }
+        .nav-item.active i { transform: translateY(-2px); }
+
+        /* Search Infrastructure */
+        .search-block { margin-bottom: 1.2rem; display: flex; background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: 12px; padding: 0.6rem 1rem; align-items: center; gap: 10px; }
+        .search-block input { flex: 1; border: none; background: transparent; outline: none; color: #fff; font-family: 'Inter', sans-serif; font-size: 0.85rem; }
+
+        .empty-view-state { text-align: center; padding: 4rem 1rem; color: var(--text-muted); font-size: 0.9rem; }
+        .empty-view-state i { font-size: 2rem; margin-bottom: 1rem; opacity: 0.3; display: block; }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>Nexora Strategy <span>&amp; Product Matrix</span></h1>
-        <p>Premium Corporate Placement Mapping Architecture</p>
-    </div>
 
-    <!-- Institutional External Ecosystem Trackers -->
-    <div class="portal-deck">
-        <div class="portal-deck-title"><i class="fas fa-landmark"></i> High-Yield National Strategy, Leadership &amp; Investigative Portals</div>
-        <div class="portal-grid">
-            <a href="https://www.fpsc.gov.pk" target="_blank" rel="noopener noreferrer" class="portal-card">
-                <div class="portal-info">
-                    <h4>FPSC Career Portal</h4>
-                    <p>Federal Strategy &amp; Administration</p>
-                </div>
-                <div class="portal-icon"><i class="fas fa-gavel"></i></div>
-            </a>
-            <a href="https://www.fpsc.gov.pk" target="_blank" rel="noopener noreferrer" class="portal-card">
-                <div class="portal-info">
-                    <h4>FPSC AD-Level Grid</h4>
-                    <p>Assistant Director Consolidated Tracks</p>
-                </div>
-                <div class="portal-icon"><i class="fas fa-user-tie"></i></div>
-            </a>
-            <a href="https://fia.gov.pk/careers" target="_blank" rel="noopener noreferrer" class="portal-card">
-                <div class="portal-info">
-                    <h4>FIA Systems Track</h4>
-                    <p>Federal Investigation Agency Portals</p>
-                </div>
-                <div class="portal-icon"><i class="fas fa-shield-halved"></i></div>
-            </a>
-            <a href="https://nab.gov.pk/jobs.asp" target="_blank" rel="noopener noreferrer" class="portal-card">
-                <div class="portal-info">
-                    <h4>NAB Frameworks</h4>
-                    <p>National Accountability Bureau Careers</p>
-                </div>
-                <div class="portal-icon"><i class="fas fa-building-shield"></i></div>
-            </a>
-            <a href="https://www.sbp.org.pk/careers/status.asp" target="_blank" rel="noopener noreferrer" class="portal-card">
-                <div class="portal-info">
-                    <h4>State Bank of Pakistan (SBP)</h4>
-                    <p>Executive PM &amp; Fellowship Tracks</p>
-                </div>
-                <div class="portal-icon"><i class="fas fa-building-columns"></i></div>
-            </a>
-            <a href="https://www.nadra.gov.pk/careers" target="_blank" rel="noopener noreferrer" class="portal-card">
-                <div class="portal-info">
-                    <h4>NADRA Systems</h4>
-                    <p>Identity Infrastructure &amp; Core Product Roles</p>
-                </div>
-                <div class="portal-icon"><i class="fas fa-id-card"></i></div>
-            </a>
+<div class="app-wrapper">
+    <!-- Static Header -->
+    <header class="app-header">
+        <div class="brand">
+            <h1>Farid <span>OppoTrack</span></h1>
+            <p id="viewSubtitle">Operational Control Hub</p>
         </div>
-    </div>
+        <div class="header-actions" id="headerActionZone">
+            <button class="btn-action" id="openAddModalBtn"><i class="fas fa-plus"></i> Add Asset</button>
+        </div>
+    </header>
 
-    <!-- Dashboard Metrics Bar -->
-    <div class="dashboard-stats">
-        <div class="stat-card total-v">
-            <div class="stat-icon" style="color: var(--primary);"><i class="fas fa-database"></i></div>
-            <div>
-                <div class="stat-val" id="metricTotal">0</div>
-                <div class="stat-lbl">Consolidated Matrix</div>
-            </div>
+    <!-- TAB 1: HOME (READ/WRITE WORKSPACE) -->
+    <main id="viewHome" class="view-container active">
+        <div class="search-block">
+            <i class="fas fa-magnifying-glass" style="color: var(--text-muted);"></i>
+            <input type="text" id="homeSearchInput" placeholder="Filter current portfolio entries...">
         </div>
-        <div class="stat-card consult-v">
-            <div class="stat-icon" style="color: #c084fc;"><i class="fas fa-fingerprint"></i></div>
-            <div>
-                <div class="stat-val" id="metricConsulting">0</div>
-                <div class="stat-lbl">Strategy Partners</div>
-            </div>
+        <div class="grid-two-column" id="homeGridContainer">
+            <!-- Programmatically Injected -->
         </div>
-        <div class="stat-card product-v">
-            <div class="stat-icon" style="color: var(--success);"><i class="fas fa-cubes-stacked"></i></div>
-            <div>
-                <div class="stat-val" id="metricProduct">0</div>
-                <div class="stat-lbl">Proprietary Product IP</div>
-            </div>
-        </div>
-    </div>
+    </main>
 
-    <!-- Core Dynamic Layout Split -->
-    <div class="workspace-layout">
-        <!-- Control Interface Sidebar -->
-        <div class="form-card">
-            <div class="form-title"><i class="fas fa-square-plus" id="formIcon" style="color: var(--primary);"></i><span id="formTitleText">Inject Target Asset</span></div>
-            <div class="input-group">
-                <label>Company Entity Name *</label>
-                <input type="text" id="compName" placeholder="e.g., McKinsey, DevTeam">
+    <!-- TAB 2: INSTITUTIONAL TRACKS (READ ONLY) -->
+    <section id="viewInstitutional" class="view-container">
+        <div class="grid-one-column" id="institutionalContainer">
+            <!-- Programmatically Injected -->
+        </div>
+    </section>
+
+    <!-- TAB 3: CONSULTING METRICS (READ ONLY) -->
+    <section id="viewConsulting" class="view-container">
+        <div class="grid-two-column" id="consultingGridContainer">
+            <!-- Programmatically Injected -->
+        </div>
+    </section>
+
+    <!-- TAB 4: PRODUCT-BASED SAAS (READ ONLY) -->
+    <section id="viewProduct" class="view-container">
+        <div class="grid-two-column" id="productGridContainer">
+            <!-- Programmatically Injected -->
+        </div>
+    </section>
+
+    <!-- Dynamic Bottom Ribbon Menu -->
+    <nav class="bottom-ribbon">
+        <div class="nav-inner">
+            <button class="nav-item active" data-target="viewHome" data-sub="Operational Control Hub">
+                <i class="fas fa-folder-tree"></i>Home
+            </button>
+            <button class="nav-item" data-target="viewInstitutional" data-sub="National Strategy Portals">
+                <i class="fas fa-landmark"></i>Institutional
+            </button>
+            <button class="nav-item" data-target="viewConsulting" data-sub="Corporate Placement Advisory">
+                <i class="fas fa-fingerprint"></i>Consulting
+            </button>
+            <button class="nav-item" data-target="viewProduct" data-sub="Proprietary Engineering Suites">
+                <i class="fas fa-cubes-stacked"></i>Product
+            </button>
+        </div>
+    </nav>
+</div>
+
+<!-- Configured Overlay Modal Form Component -->
+<div class="modal-overlay" id="assetModalOverlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3 id="modalTitleText">Inject Target Asset</h3>
+            <button class="close-modal-trigger" id="closeModalBtn">&times;</button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="formAssetId">
+            <div class="form-group">
+                <label>Corporate Entity Name *</label>
+                <input type="text" id="formAttrName" placeholder="e.g., McKinsey &amp; Company">
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label>Ecosystem Domain *</label>
-                <select id="compType">
+                <select id="formAttrType">
                     <option value="Consulting">Consulting &amp; Advisory</option>
                     <option value="Product">Product &amp; Tech Systems</option>
                 </select>
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label>Lahore Office Hub</label>
-                <input type="text" id="compLocation" placeholder="e.g., Gulberg III">
+                <input type="text" id="formAttrLocation" placeholder="e.g., Gulberg III">
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label>Recruitment Suite URL *</label>
-                <input type="url" id="compUrl" placeholder="https://...">
+                <input type="url" id="formAttrUrl" placeholder="https://...">
             </div>
-            <div class="input-group">
-                <label>Corporate LinkedIn Profile</label>
-                <input type="url" id="compLinkedin" placeholder="https://linkedin.com/company/...">
+            <div class="form-group">
+                <label>Corporate LinkedIn URL</label>
+                <input type="url" id="formAttrLinkedin" placeholder="https://linkedin.com/company/...">
             </div>
-            <div class="input-group">
+            <div class="form-group">
                 <label>Strategic Intent Thesis</label>
-                <textarea id="compDesc" rows="3" placeholder="Define product roadmap weight or market restructuring vectors..."></textarea>
+                <textarea id="formAttrDesc" rows="3" placeholder="Define product roadmap weight or alignment vector..."></textarea>
             </div>
-            <button class="btn btn-primary" id="saveCompanyBtn"><i class="fas fa-cube"></i> Commit Framework</button>
-            <button class="btn btn-secondary" id="cancelEditBtn" style="display:none;"><i class="fas fa-ban"></i> Abort</button>
-            <button class="btn btn-secondary" id="clearFormBtn"><i class="fas fa-eraser"></i> Clear Inputs</button>
         </div>
-
-        <!-- Matrix Monitoring Workspace -->
-        <div>
-            <div class="filter-controls">
-                <div class="filter-pills" id="filterPillsContainer">
-                    <button class="pill-btn active" data-filter="all">All Channels</button>
-                    <button class="pill-btn" data-filter="Consulting">Corporate Strategy</button>
-                    <button class="pill-btn" data-filter="Product">Product Engineering</button>
-                </div>
-                <div class="search-box">
-                    <i class="fas fa-magnifying-glass" style="color: var(--text-muted);"></i>
-                    <input type="text" id="searchCompaniesInput" placeholder="Filter vectors...">
-                    <i class="fas fa-xmark" id="clearCompanySearch" style="cursor:pointer; color: var(--text-muted);"></i>
-                </div>
-            </div>
-
-            <div id="companiesListContainer" class="companies-grid">
-                <div class="empty-state">Initializing tracking registry framework...</div>
-            </div>
+        <div class="modal-footer">
+            <button class="btn-ui btn-ui-danger" id="deleteAssetBtn" style="display: none;"><i class="fas fa-trash"></i> Purge</button>
+            <button class="btn-ui btn-ui-secondary" id="cancelModalBtn">Cancel</button>
+            <button class="btn-ui btn-ui-primary" id="saveAssetBtn">Commit</button>
         </div>
     </div>
 </div>
 
 <script>
-    // ----- DATA INJECTION MATRIX -----
-    const SEED_COMPANIES = [
-        // CONSULTING & STRATEGY SEGMENT (RANKS 1 - 20)
+    // ----- RAW IMMUTABLE CORE REPOSITORIES -----
+    const INSTITUTIONAL_DATA = [
+        { name: "FPSC Career Portal", desc: "Federal Strategy & Administration Channels", url: "https://www.fpsc.gov.pk", icon: "fa-gavel" },
+        { name: "FPSC AD-Level Grid", desc: "Assistant Director Recruitment Consolidated Tracks", url: "https://www.fpsc.gov.pk", icon: "fa-user-tie" },
+        { name: "FIA Systems Track", desc: "Federal Investigation Agency Command Portals", url: "https://fia.gov.pk/careers", icon: "fa-shield-halved" },
+        { name: "NAB Frameworks", desc: "National Accountability Bureau Careers & Inquiries", url: "https://nab.gov.pk/jobs.asp", icon: "fa-building-shield" },
+        { name: "State Bank of Pakistan (SBP)", desc: "Executive Policy Making & Fellowship Tracks", url: "https://www.sbp.org.pk/careers/status.asp", icon: "fa-building-columns" },
+        { name: "NADRA Systems", desc: "Identity Infrastructure & Core Enterprise Product Roles", url: "https://www.nadra.gov.pk/careers", icon: "fa-id-card" }
+    ];
+
+    const DEFAULT_COMPANIES = [
         { id: 1, rank: 1, name: "PwC Pakistan (A.F. Ferguson & Co.)", type: "Consulting", location: "Gulberg V", description: "Market leader in complex corporate finance restructuring, high-stakes transaction advisory, risk frameworks, and systemic enterprise growth strategy.", url: "https://www.pwc.com.pk/en/about-us/offices.html", linkedin: "https://www.linkedin.com/company/pwc-pakistan" },
         { id: 2, rank: 2, name: "EY Ford Rhodes", type: "Consulting", location: "Gulberg II", description: "Top-tier operational turnarounds, structural market transactions, macro-level strategic planning models, and premium institutional business consulting.", url: "https://www.ey.com/en_gl/locations/pakistan", linkedin: "https://www.linkedin.com/company/ey" },
         { id: 3, rank: 3, name: "KPMG Taseer Hadi & Co.", type: "Consulting", location: "Gulberg II", description: "Specialized management consulting wings focusing heavily on institutional risk management frameworks, strategic evaluations, and structural merger advisory.", url: "https://kpmg.com/pk/en/home.html", linkedin: "https://www.linkedin.com/company/kpmg-pakistan" },
         { id: 4, rank: 4, name: "Yousuf Adil", type: "Consulting", location: "Gulberg III", description: "Premium corporate finance hub specializing in large-scale infrastructure capital projects, financial feasibility modeling, and performance analytics.", url: "https://yousufadil.com/careers/", linkedin: "https://www.linkedin.com/company/yousuf-adil" },
-        { id: 5, rank: 5, name: "Abacus Consulting", type: "Consulting", location: "Egerton Road / DHA", description: "Largest domestic digital transformation strategy practice. Specializes in global enterprise target architecture, scaling metrics, and SAP strategy consulting.", url: "https://www.abacus-global.com/careers", linkedin: "https://www.linkedin.com/company/abacus-consulting" },
-        { id: 6, rank: 6, name: "BDO Pakistan", type: "Consulting", location: "Ferozepur Road", description: "High-level corporate recovery mechanisms, detailed commercial feasibility design, cross-border transactional analysis, and systemic business planning.", url: "https://www.bdo.com.pk/en-gb/careers", linkedin: "https://www.linkedin.com/company/bdo-pakistan" },
-        { id: 7, rank: 7, name: "Grant Thornton Anjum Rahman", type: "Consulting", location: "Gulberg III", description: "Bespoke operational performance advisory, corporate governance metrics, transaction evaluations, and deep market entry valuation strategies.", url: "https://www.grantthornton.pk", linkedin: "https://www.linkedin.com/company/grant-thornton-pakistan" },
-        { id: 8, rank: 8, name: "MNBEC", type: "Consulting", location: "DHA Phase 5", description: "Elite boutique focusing exclusively on family business governance frameworks, large conglomerate estate inheritance modeling, and organizational strategy.", url: "https://mnbec.com/", linkedin: "https://www.linkedin.com/company/mnbec" },
-        { id: 9, rank: 9, name: "Crowe Pakistan", type: "Consulting", location: "Gulberg II", description: "Corporate restructuring specialists focusing intensely on legal framework planning, comprehensive asset management evaluation, and executive-tier workflow auditing.", url: "https://www.crowe.com/pk/careers", linkedin: "https://www.linkedin.com/company/crowe-pakistan" },
-        { id: 10, rank: 10, name: "Mazars Pakistan", type: "Consulting", location: "Gulberg III", description: "Global integrated infrastructure specialist scaling localized organizational optimization models, cross-border investments, and technical strategy design.", url: "https://www.mazars.pk/Home/Join-us", linkedin: "https://www.linkedin.com/company/mazatspakistan" },
-        { id: 11, rank: 11, name: "Baker Tilly Mehmood Idrees Qamar", type: "Consulting", location: "Gulberg III", description: "Highly active in middle-market M&A sourcing frameworks, structured debt valuations, venture cap structuring, and forensic investment engineering.", url: "https://bakertilly.com.pk/careers/", linkedin: "https://www.linkedin.com/company/baker-tilly-pakistan" },
-        { id: 12, rank: 12, name: "RSM Pakistan", type: "Consulting", location: "Gulberg V", description: "Strategic market positioning architects tracking tactical product rollout evaluations, corporate valuation metrics, and portfolio optimization modeling.", url: "https://www.rsm.global/pakistan/", linkedin: "https://www.linkedin.com/company/rsm-pakistan" },
-        { id: 13, rank: 13, name: "PKF F.R.A.N.Z. & Co.", type: "Consulting", location: "Gulberg", description: "Comprehensive corporate advisory focusing heavily on institutional risk modeling frameworks, statutory feasibility studies, and legal advisory structures.", url: "http://www.pkf.com.pk/careers/", linkedin: "https://www.linkedin.com/company/pkf-pakistan" },
-        { id: 14, rank: 14, name: "Moore Shekha Mufti", type: "Consulting", location: "Cavalry Ground", description: "Premium international partner tracking complex double-taxation relief modeling, cross-border asset transactions, and deep corporate advisory parameters.", url: "https://www.moore.pk/careers", linkedin: "https://www.linkedin.com/company/moore-pakistan" },
-        { id: 15, rank: 15, name: "Nexia International", type: "Consulting", location: "Jail Road", description: "Private equity transaction specialists mapping out corporate investment structuring, target due-diligence execution, and private capital evaluations.", url: "https://nexia.pk/careers/", linkedin: "https://www.linkedin.com/company/nexia-international" },
-        { id: 16, rank: 16, name: "Tariq Abdul Ghani Maqbool & Co.", type: "Consulting", location: "Gulberg", description: "Boutique corporate law and strategic advisory setup optimizing transactional assets, capital structured layouts, and statutory company validations.", url: "http://www.tagm.co/careers/", linkedin: "https://www.linkedin.com/company/tariq-abdul-ghani-maqbool-&-co-" },
-        { id: 17, rank: 17, name: "ShineWing Hameed Chaudhri & Co.", type: "Consulting", location: "Gulberg", description: "Specialized operational advisory practice handling enterprise risk parameters, high-level corporate planning, and financial oversight structures.", url: "http://www.shc-co.com.pk/careers.html", linkedin: "https://www.linkedin.com/company/shinewing-pakistan" },
-        { id: 18, rank: 18, name: "Nasir Javaid Maqsood Imran", type: "Consulting", location: "Gulberg", description: "Bespoke corporate finance boutique configuring internal control ecosystems, strategic pricing sheets, and commercial feasibility tracking.", url: "http://www.njmi.net/careers/", linkedin: "https://www.linkedin.com/company/njmi-pakistan" },
-        { id: 19, rank: 19, name: "Reanda Haroon Zakaria & Co.", type: "Consulting", location: "Main Boulevard Hub", description: "Valuation specialists conducting targeted forensic planning, deep asset restructuring schemes, and cross-border joint venture configurations.", url: "https://www.reandahz.com/careers", linkedin: "https://www.linkedin.com/company/reanda-haroon-zakaria-&-co" },
-        { id: 20, rank: 20, name: "JZ & Co.", type: "Consulting", location: "Gulberg", description: "High-growth boutique handling digital data governance advisory, localized asset evaluations, and agile business restructuring metrics.", url: "https://jzco.pk/careers", linkedin: "https://www.linkedin.com/company/jzandco" },
-
-        // NATIVE PRODUCT & TECH SEGMENT (RANKS 1 - 20)
-        { id: 21, rank: 1, name: "Motive (KeepTruckin)", type: "Product", location: "Gulberg II", description: "Global Silicon Valley flagship scaling AI-driven fleet infrastructure, fleet metrics SaaS, and advanced custom telematics systems with elite local PM tracks.", url: "https://gomotive.com/company/careers/", linkedin: "https://www.linkedin.com/company/gomotive" },
-        { id: 22, rank: 2, name: "Educative.io", type: "Product", location: "Gulberg III", description: "Highly dynamic cloud B2B developer education SaaS platform managing real-time runtime engine interfaces, running complete engineering-to-product tracks locally.", url: "https://www.educative.io/careers", linkedin: "https://www.linkedin.com/company/educative-inc" },
-        { id: 23, rank: 3, name: "NetSol Technologies", type: "Product", location: "Ring Road Hub", description: "Global asset financial computing giant. Owns proprietary 'NFS Ascent' infrastructure managing tier-1 global asset leasing configurations.", url: "https://netsoltech.com/careers", linkedin: "https://www.linkedin.com/company/netsol-technologies-inc-" },
-        { id: 24, rank: 4, name: "Systems Limited", type: "Product", location: "DHA Phase 8", description: "Largest tech ecosystem engine in the country. Owns unique domestic banking core platforms, retail configurations, and custom ERP product layers.", url: "https://www.systemsltd.com/careers", linkedin: "https://www.linkedin.com/company/systemsltd" },
-        { id: 25, rank: 5, name: "Arbisoft", type: "Product", location: "DHA Phase 8", description: "Premium agile product scaling infrastructure operating massive customized SaaS instances, international platforms, and high-throughput routing algorithms.", url: "https://arbisoft.com/careers/", linkedin: "https://www.linkedin.com/company/arbisoft" },
-        { id: 26, rank: 6, name: "Dubizzle Labs", type: "Product", location: "Gulberg III", description: "Tech core engine building Bayut/Dubizzle MENA property search applications, enterprise CRM software tools, and localized advertising frameworks.", url: "https://dubizzlelabs.breezy.hr/", linkedin: "https://www.linkedin.com/company/dubizzle-labs" },
-        { id: 27, rank: 7, name: "PakWheels", type: "Product", location: "Gulberg III", description: "Pioneering localized marketplace engine owning advanced vehicle verification technology platforms, valuation databases, and transactional digital services.", url: "https://pakeventures.simplicant.com/", linkedin: "https://www.linkedin.com/company/pakwheels" },
-        { id: 28, rank: 8, name: "Programmers Force", type: "Product", location: "Gulberg III", description: "Massive AI computer-vision automated checking models. Specialized in fintech risk, identity checking compliance tools, and high-load backend pipelines.", url: "https://pf.com.pk/careers/", linkedin: "https://www.linkedin.com/company/programmers-force" },
-        { id: 29, rank: 9, name: "VentureDive", type: "Product", location: "Gulberg V", description: "Premium system engineering masterminds architecting elite mobility software logic layers, food-delivery platforms, and financial transaction software architectures.", url: "https://www.venturedive.com/careers/", linkedin: "https://www.linkedin.com/company/venturedive" },
-        { id: 30, rank: 10, name: "Finja", type: "Product", location: "Gulberg / DHA", description: "Fintech innovator managing proprietary digital loan scoring code engines, digital corporate invoice tools, and payroll ledger applications.", url: "https://finja.pk/careers/", linkedin: "https://www.linkedin.com/company/finja" },
-        { id: 31, rank: 11, name: "Conrad Labs", type: "Product", location: "Model Town Link Rd", description: "Bespoke US venture-backed SaaS development refinery focusing explicitly on incubating early MVP code frameworks and refining complex software architectures.", url: "https://www.conradlabs.com/careers/", linkedin: "https://www.linkedin.com/company/conrad-labs" },
-        { id: 32, rank: 12, name: "Emumba", type: "Product", location: "DHA Phase 5", description: "High-performance fintech data visualization engineers scaling real-time algorithmic equity panels and heavy capital-market calculation interfaces.", url: "https://www.emumba.com/careers/", linkedin: "https://www.linkedin.com/company/emumba" },
-        { id: 33, rank: 13, name: "TenPearls", type: "Product", location: "Gulberg III", description: "Global agile tech infrastructure scaling complex healthcare diagnostic patient portals, customized cloud platforms, and mobile consumer services.", url: "https://tenpearls.com/careers/", linkedin: "https://www.linkedin.com/company/tenpearls" },
-        { id: 34, rank: 14, name: "Retailo Technologies", type: "Product", location: "Gulberg II", description: "B2B inventory orchestration and supply-chain fintech logic systems managing localized product distribution analytics and small-merchant credit software.", url: "https://retailo.co/careers/", linkedin: "https://www.linkedin.com/company/retailo" },
-        { id: 35, rank: 15, name: "Nisum Pakistan", type: "Product", location: "Gulberg III", description: "Global systems firm managing enterprise-level multichannel merchant checkout tech systems, continuous pipeline checking frameworks, and large inventory tools.", url: "https://nisum.com/careers", linkedin: "https://www.linkedin.com/company/nisum-technologies" },
-        { id: 36, rank: 16, name: "TkXel", type: "Product", location: "DHA Phase 3", description: "Enterprise SaaS architecture development suite engineering automated financial processing blocks and integrated business intelligence systems.", url: "https://tkxel.com/careers/", linkedin: "https://www.linkedin.com/company/tkxel" },
-        { id: 37, rank: 17, name: "Rolustech", type: "Product", location: "Gulberg", description: "Proprietary specialized vertical-specific CRM plugins and modular cloud application networks running customized pipeline orchestration code.", url: "https://www.rolustech.com/careers", linkedin: "https://www.linkedin.com/company/rolustech" },
-        { id: 38, rank: 18, name: "Strategic Systems International", type: "Product", location: "Gulberg", description: "Heavy industrial mathematical analytics tools, risk evaluation models, and financial optimization SaaS designed for external enterprise actors.", url: "https://ssi.com.pk/careers/", linkedin: "https://www.linkedin.com/company/ssi_2" },
-        { id: 39, rank: 19, name: "Nextbridge", type: "Product", location: "Canal Bank Rd", description: "Large-scale e-commerce transactional database frameworks, custom multi-tenant tracking platforms, and enterprise supply architectures.", url: "https://nextbridge.com/careers/", linkedin: "https://www.linkedin.com/company/nextbridge" },
-        { id: 40, rank: 20, name: "Genetech Solutions", type: "Product", location: "Gulberg", description: "Targeted digital workflow automation products, customized specialized content engines, and functional web3 interface widgets.", url: "https://genetechsolutions.com/careers", linkedin: "https://www.linkedin.com/company/genetech-solutions" }
+        { id: 5, rank: 5, name: "Abacus Consulting", type: "Consulting", location: "Egerton Road", description: "Largest domestic digital transformation strategy practice. Specializes in global enterprise target architecture, scaling metrics, and SAP strategy consulting.", url: "https://www.abacus-global.com/careers", linkedin: "https://www.linkedin.com/company/abacus-consulting" },
+        { id: 6, rank: 1, name: "Motive (KeepTruckin)", type: "Product", location: "Gulberg II", description: "Global Silicon Valley flagship scaling AI-driven fleet infrastructure, fleet metrics SaaS, and advanced custom telematics systems with elite local PM tracks.", url: "https://gomotive.com/company/careers/", linkedin: "https://www.linkedin.com/company/gomotive" },
+        { id: 7, rank: 2, name: "Educative.io", type: "Product", location: "Gulberg III", description: "Highly dynamic cloud B2B developer education SaaS platform managing real-time runtime engine interfaces, running complete engineering-to-product tracks locally.", url: "https://www.educative.io/careers", linkedin: "https://www.linkedin.com/company/educative-inc" },
+        { id: 8, rank: 3, name: "NetSol Technologies", type: "Product", location: "Ring Road Hub", description: "Global asset financial computing giant. Owns proprietary 'NFS Ascent' infrastructure managing tier-1 global asset leasing configurations.", url: "https://netsoltech.com/careers", linkedin: "https://www.linkedin.com/company/netsol-technologies-inc-" },
+        { id: 9, rank: 4, name: "Systems Limited", type: "Product", location: "DHA Phase 8", description: "Largest tech ecosystem engine in the country. Owns unique domestic banking core platforms, retail configurations, and custom ERP product layers.", url: "https://www.systemsltd.com/careers", linkedin: "https://www.linkedin.com/company/systemsltd" },
+        { id: 10, rank: 5, name: "Arbisoft", type: "Product", location: "DHA Phase 8", description: "Premium agile product scaling infrastructure operating massive customized SaaS instances, international platforms, and high-throughput routing algorithms.", url: "https://arbisoft.com/careers/", linkedin: "https://www.linkedin.com/company/arbisoft" }
     ];
 
-    let companies = [];
-    let editModeId = null;
-    let activeFilter = "all";
-    let companySearchQuery = "";
+    let portfolio = [];
+    let searchFilter = "";
 
     // DOM Links Mapping
-    const compNameInput = document.getElementById('compName');
-    const compTypeInput = document.getElementById('compType');
-    const compLocationInput = document.getElementById('compLocation');
-    const compUrlInput = document.getElementById('compUrl');
-    const compLinkedinInput = document.getElementById('compLinkedin');
-    const compDescInput = document.getElementById('compDesc');
-    const saveBtn = document.getElementById('saveCompanyBtn');
-    const cancelEditBtn = document.getElementById('cancelEditBtn');
-    const clearFormBtn = document.getElementById('clearFormBtn');
-    const companiesContainer = document.getElementById('companiesListContainer');
-    const searchCompaniesInput = document.getElementById('searchCompaniesInput');
-    const formTitleSpan = document.getElementById('formTitleText');
-    const formIcon = document.getElementById('formIcon');
+    const homeGrid = document.getElementById('homeGridContainer');
+    const consultGrid = document.getElementById('consultingGridContainer');
+    const prodGrid = document.getElementById('productGridContainer');
+    const instContainer = document.getElementById('institutionalContainer');
+    const viewSubtitle = document.getElementById('viewSubtitle');
+    const headerActionZone = document.getElementById('headerActionZone');
+    
+    // Form Mapping
+    const modalOverlay = document.getElementById('assetModalOverlay');
+    const assetIdInp = document.getElementById('formAssetId');
+    const attrNameInp = document.getElementById('formAttrName');
+    const attrTypeInp = document.getElementById('formAttrType');
+    const attrLocInp = document.getElementById('formAttrLocation');
+    const attrUrlInp = document.getElementById('formAttrUrl');
+    const attrLnkInp = document.getElementById('formAttrLinkedin');
+    const attrDescInp = document.getElementById('formAttrDesc');
+    const deleteBtn = document.getElementById('deleteAssetBtn');
 
     function escapeHtml(str) {
         if (!str) return '';
         return str.replace(/[&<>]/g, m => m === '&' ? '&amp;' : (m === '<' ? '&lt;' : '&gt;'));
     }
 
-    function saveToLocal() {
-        localStorage.setItem('nexora_lahore_v4_matrix', JSON.stringify(companies));
-        calculateMetrics();
+    function verifyUrl(url) {
+        if (!url) return '';
+        let clean = url.trim();
+        if (clean && !clean.startsWith('http')) {
+            clean = 'https://' + clean;
+        }
+        return clean;
     }
 
-    function calculateMetrics() {
-        document.getElementById('metricTotal').innerText = companies.length;
-        document.getElementById('metricConsulting').innerText = companies.filter(c => c.type === 'Consulting').length;
-        document.getElementById('metricProduct').innerText = companies.filter(c => c.type === 'Product').length;
-    }
-
-    function loadData() {
-        const stored = localStorage.getItem('nexora_lahore_v4_matrix');
-        if (stored) {
-            try {
-                const parsed = JSON.parse(stored);
-                companies = Array.isArray(parsed) && parsed.length > 0 ? parsed : [...SEED_COMPANIES];
-            } catch(e) { companies = [...SEED_COMPANIES]; }
+    // Engine Framework Cache Hooks
+    function initDatabase() {
+        const cached = localStorage.getItem('farid_oppotrack_db');
+        if(cached) {
+            try { portfolio = JSON.parse(cached); } catch(e) { portfolio = [...DEFAULT_COMPANIES]; }
         } else {
-            companies = [...SEED_COMPANIES];
+            portfolio = [...DEFAULT_COMPANIES];
         }
-        saveToLocal();
-        renderCompaniesTab();
+        syncDataAndRender();
     }
 
-    function getFilteredCompanies() {
-        return companies.filter(c => {
-            const matchesFilter = activeFilter === "all" || c.type === activeFilter;
-            const cleanQuery = companySearchQuery.trim().toLowerCase();
-            return matchesFilter && (!cleanQuery || 
-                c.name.toLowerCase().includes(cleanQuery) || 
-                (c.description && c.description.toLowerCase().includes(cleanQuery)) ||
-                (c.location && c.location.toLowerCase().includes(cleanQuery)));
-        });
+    function syncDataAndRender() {
+        localStorage.setItem('farid_oppotrack_db', JSON.stringify(portfolio));
+        renderActiveViews();
     }
 
-    function renderCompaniesTab() {
-        const filtered = getFilteredCompanies();
-        if (filtered.length === 0) {
-            companiesContainer.innerHTML = `<div class="empty-state"><i class="fas fa-satellite-dish"></i> No structural vectors match current queries.</div>`;
-            return;
-        }
-        let html = '';
-        filtered.forEach(comp => {
-            let safeUrl = comp.url?.trim() || '';
-            if (safeUrl && !safeUrl.startsWith('http')) safeUrl = 'https://' + safeUrl;
-            let safeLinkedin = comp.linkedin?.trim() || '';
-            if (safeLinkedin && !safeLinkedin.startsWith('http')) safeLinkedin = 'https://' + safeLinkedin;
-
-            const rankLabel = comp.rank ? `<span class="rank-badge"><i class="fas fa-crown"></i> Hierarchy Rank: #${comp.rank}</span>` : '';
-            const locationLabel = comp.location ? `<div class="location-tag"><i class="fas fa-location-crosshairs"></i> ${escapeHtml(comp.location)}</div>` : '';
+    // Navigation Context State Manager
+    document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const currentTab = e.currentTarget;
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
             
-            html += `
-                <div class="company-card" data-id="${comp.id}">
-                    <div class="card-content">
-                        <div class="card-meta-row">
-                            <div>
-                                ${rankLabel}
-                                <div class="company-name">${escapeHtml(comp.name)}</div>
-                            </div>
-                            <span class="type-badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
-                        </div>
-                        ${locationLabel}
-                        <div class="company-desc">${escapeHtml(comp.description || 'Asset details open.')}</div>
-                        <div class="link-cluster">
-                            ${safeUrl ? `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer" class="company-link careers-lnk"><i class="fas fa-arrow-trend-up"></i> Careers</a>` : ''}
-                            ${safeLinkedin ? `<a href="${safeLinkedin}" target="_blank" rel="noopener noreferrer" class="company-link linkedin-lnk"><i class="fab fa-linkedin"></i> LinkedIn</a>` : ''}
-                        </div>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn btn-secondary btn-sm edit-company-btn" data-id="${comp.id}"><i class="fas fa-sliders"></i></button>
-                        <button class="btn btn-danger btn-sm delete-company-btn" data-id="${comp.id}"><i class="fas fa-trash-arrow-up"></i></button>
-                    </div>
-                </div>
-            `;
-        });
-        companiesContainer.innerHTML = html;
-        
-        document.querySelectorAll('.edit-company-btn').forEach(btn => btn.addEventListener('click', () => startEditMode(parseInt(btn.dataset.id))));
-        document.querySelectorAll('.delete-company-btn').forEach(btn => btn.addEventListener('click', () => deleteCompany(parseInt(btn.dataset.id))));
-    }
+            currentTab.classList.add('active');
+            const targetViewId = currentTab.dataset.target;
+            document.getElementById(targetViewId).classList.add('active');
+            
+            viewSubtitle.innerText = currentTab.dataset.sub;
 
-    function onSave() {
-        const name = compNameInput.value.trim();
-        const type = compTypeInput.value;
-        const location = compLocationInput.value.trim();
-        const desc = compDescInput.value.trim();
-        let url = compUrlInput.value.trim();
-        let linkedin = compLinkedinInput.value.trim();
-
-        if (!name || !url) { alert("Core specifications missing."); return; }
-        if (!url.startsWith('http')) url = 'https://' + url;
-        if (linkedin && !linkedin.startsWith('http')) linkedin = 'https://' + linkedin;
-
-        if (editModeId !== null) {
-            const idx = companies.findIndex(c => c.id === editModeId);
-            if (idx !== -1) companies[idx] = { ...companies[idx], name, type, location, description: desc, url, linkedin };
-            exitEditMode();
-        } else {
-            companies.push({ id: Date.now(), rank: null, name, type, location, description: desc, url, linkedin });
-            clearFormFields();
-        }
-        saveToLocal();
-        renderCompaniesTab();
-    }
-
-    function deleteCompany(id) {
-        if (confirm("Purge asset entry?")) {
-            companies = companies.filter(c => c.id !== id);
-            if (editModeId === id) exitEditMode();
-            saveToLocal();
-            renderCompaniesTab();
-        }
-    }
-
-    function startEditMode(id) {
-        const comp = companies.find(c => c.id === id);
-        if (!comp) return;
-        editModeId = id;
-        compNameInput.value = comp.name;
-        compTypeInput.value = comp.type;
-        compLocationInput.value = comp.location || '';
-        compUrlInput.value = comp.url;
-        compLinkedinInput.value = comp.linkedin || '';
-        compDescInput.value = comp.description || '';
-        formTitleSpan.innerText = 'Modify Core Parameters';
-        formIcon.className = 'fas fa-sliders';
-        cancelEditBtn.style.display = 'inline-flex';
-        saveBtn.innerHTML = '<i class="fas fa-pen-nib"></i> Patch Matrix';
-    }
-
-    function exitEditMode() {
-        editModeId = null;
-        clearFormFields();
-        formTitleSpan.innerText = 'Inject Target Asset';
-        formIcon.className = 'fas fa-square-plus';
-        cancelEditBtn.style.display = 'none';
-        saveBtn.innerHTML = '<i class="fas fa-cube"></i> Commit Framework';
-    }
-
-    function clearFormFields() { compNameInput.value = ''; compLocationInput.value = ''; compUrlInput.value = ''; compLinkedinInput.value = ''; compDescInput.value = ''; }
-
-    saveBtn.addEventListener('click', onSave);
-    clearFormBtn.addEventListener('click', () => editModeId !== null ? exitEditMode() : clearFormFields());
-    cancelEditBtn.addEventListener('click', exitEditMode);
-    searchCompaniesInput.addEventListener('input', (e) => { companySearchQuery = e.target.value; renderCompaniesTab(); });
-    document.getElementById('clearCompanySearch').addEventListener('click', () => { searchCompaniesInput.value = ''; companySearchQuery = ''; renderCompaniesTab(); });
-
-    document.getElementById('filterPillsContainer').querySelectorAll('.pill-btn').forEach(pill => {
-        pill.addEventListener('click', (e) => {
-            document.getElementById('filterPillsContainer').querySelectorAll('.pill-btn').forEach(p => p.classList.remove('active'));
-            e.target.classList.add('active');
-            activeFilter = e.target.dataset.filter;
-            renderCompaniesTab();
+            // Header actions switch validation
+            if (targetViewId === 'viewHome') {
+                headerActionZone.style.visibility = 'visible';
+            } else {
+                headerActionZone.style.visibility = 'hidden';
+            }
         });
     });
 
-    loadData();
+    // Unified Views Factory
+    function renderActiveViews() {
+        // --- 1. VIEW HOME (MUTABLE DUAL COLUMN) ---
+        const cleanQuery = searchFilter.trim().toLowerCase();
+        const filteredHome = portfolio.filter(c => 
+            !cleanQuery || 
+            c.name.toLowerCase().includes(cleanQuery) || 
+            (c.description && c.description.toLowerCase().includes(cleanQuery)) ||
+            (c.location && c.location.toLowerCase().includes(cleanQuery))
+        );
+
+        if(filteredHome.length === 0) {
+            homeGrid.innerHTML = `<div class="empty-view-state"><i class="fas fa-radar"></i>No records found matching lookup.</div>`;
+        } else {
+            homeGrid.innerHTML = filteredHome.map(comp => `
+                <div class="matrix-card interactive" onclick="launchEditModal(${comp.id})">
+                    <div>
+                        <div class="card-top">
+                            <span class="card-title">${escapeHtml(comp.name)}</span>
+                            <span class="badge badge-${comp.type.toLowerCase()}">${comp.type}</span>
+                        </div>
+                        <div class="card-meta">
+                            ${comp.rank ? `<span class="badge badge-rank"><i class="fas fa-crown"></i> Rank #${comp.rank}</span>` : ''}
+                            ${comp.location ? `<span><i class="fas fa-location-dot"></i> ${escapeHtml(comp.location)}</span>` : ''}
+                        </div>
+                        <p class="card-desc">${escapeHtml(comp.description || 'No strategic narrative committed.')}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // --- 2. VIEW INSTITUTIONAL (READ-ONLY ROWS) ---
+        instContainer.innerHTML = INSTITUTIONAL_DATA.map(inst => `
+            <div class="inst-list-item">
+                <div style="display: flex; align-items: center; gap: 14px;">
+                    <div class="inst-icon"><i class="fas ${inst.icon}"></i></div>
+                    <div class="inst-details">
+                        <h4>${escapeHtml(inst.name)}</h4>
+                        <p>${escapeHtml(inst.desc)}</p>
+                    </div>
+                </div>
+                <a href="${verifyUrl(inst.url)}" target="_blank" rel="noopener noreferrer" class="link-anchor lnk-web"><i class="fas fa-arrow-up-right-from-square"></i> Open</a>
+            </div>
+        `).join('');
+
+        // --- 3. VIEW CONSULTING (READ-ONLY) ---
+        const consultants = portfolio.filter(c => c.type === 'Consulting');
+        if(consultants.length === 0) {
+            consultGrid.innerHTML = `<div class="empty-view-state"><i class="fas fa-folder-open"></i>No Advisory metrics logged.</div>`;
+        } else {
+            consultGrid.innerHTML = consultants.map(comp => generateReadOnlyCard(comp)).join('');
+        }
+
+        // --- 4. VIEW PRODUCT (READ-ONLY) ---
+        const products = portfolio.filter(c => c.type === 'Product');
+        if(products.length === 0) {
+            prodGrid.innerHTML = `<div class="empty-view-state"><i class="fas fa-folder-open"></i>No Product suites logged.</div>`;
+        } else {
+            prodGrid.innerHTML = products.map(comp => generateReadOnlyCard(comp)).join('');
+        }
+    }
+
+    function generateReadOnlyCard(comp) {
+        const webLink = verifyUrl(comp.url);
+        const lknLink = verifyUrl(comp.linkedin);
+        return `
+            <div class="matrix-card">
+                <div>
+                    <div class="card-top">
+                        <span class="card-title">${escapeHtml(comp.name)}</span>
+                    </div>
+                    <div class="card-meta">
+                        ${comp.rank ? `<span class="badge badge-rank"><i class="fas fa-crown"></i> Rank #${comp.rank}</span>` : ''}
+                        ${comp.location ? `<span><i class="fas fa-location-dot"></i> ${escapeHtml(comp.location)}</span>` : ''}
+                    </div>
+                    <p class="card-desc">${escapeHtml(comp.description || 'No strategic narrative committed.')}</p>
+                </div>
+                <div class="action-row">
+                    ${webLink ? `<a href="${webLink}" target="_blank" rel="noopener noreferrer" class="link-anchor lnk-web"><i class="fas fa-globe"></i> Web</a>` : ''}
+                    ${lknLink ? `<a href="${lknLink}" target="_blank" rel="noopener noreferrer" class="link-anchor lnk-linkedin"><i class="fab fa-linkedin-in"></i> LinkedIn</a>` : ''}
+                </div>
+            </div>
+        `;
+    }
+
+    // Modal Control Logic
+    function clearForm() {
+        assetIdInp.value = '';
+        attrNameInp.value = '';
+        attrLocInp.value = '';
+        attrUrlInp.value = '';
+        attrLnkInp.value = '';
+        attrDescInp.value = '';
+        attrTypeInp.value = 'Consulting';
+    }
+
+    document.getElementById('openAddModalBtn').addEventListener('click', () => {
+        clearForm();
+        document.getElementById('modalTitleText').innerText = "Inject Target Asset";
+        deleteBtn.style.display = 'none';
+        modalOverlay.classList.add('active');
+    });
+
+    window.launchEditModal = function(id) {
+        const comp = portfolio.find(c => c.id === id);
+        if(!comp) return;
+        
+        assetIdInp.value = comp.id;
+        attrNameInp.value = comp.name || '';
+        attrTypeInp.value = comp.type || 'Consulting';
+        attrLocInp.value = comp.location || '';
+        attrUrlInp.value = comp.url || '';
+        attrLnkInp.value = comp.linkedin || '';
+        attrDescInp.value = comp.description || '';
+
+        document.getElementById('modalTitleText').innerText = "Modify Core Parameters";
+        deleteBtn.style.display = 'inline-flex';
+        modalOverlay.classList.add('active');
+    };
+
+    function hideModal() {
+        modalOverlay.classList.remove('active');
+        clearForm();
+    }
+
+    document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+    document.getElementById('cancelModalBtn').addEventListener('click', hideModal);
+
+    // Commit Mutation Form Actions
+    document.getElementById('saveAssetBtn').addEventListener('click', () => {
+        const name = attrNameInp.value.trim();
+        const url = attrUrlInp.value.trim();
+        if(!name || !url) { alert("Core specifications missing."); return; }
+
+        const id = assetIdInp.value;
+        const assetData = {
+            name,
+            type: attrTypeInp.value,
+            location: attrLocInp.value.trim(),
+            url: verifyUrl(url),
+            linkedin: verifyUrl(lknLink = attrLnkInp.value.trim()),
+            description: attrDescInp.value.trim()
+        };
+
+        if(id) {
+            // Update Existing Track
+            const idx = portfolio.findIndex(c => c.id == id);
+            if(idx !== -1) {
+                portfolio[idx] = { ...portfolio[idx], ...assetData };
+            }
+        } else {
+            // Append New Record
+            assetData.id = Date.now();
+            assetData.rank = null;
+            portfolio.push(assetData);
+        }
+
+        hideModal();
+        syncDataAndRender();
+    });
+
+    deleteBtn.addEventListener('click', () => {
+        const id = assetIdInp.value;
+        if(id && confirm("Purge entry entirely from engine tracking matrix?")) {
+            portfolio = portfolio.filter(c => c.id != id);
+            hideModal();
+            syncDataAndRender();
+        }
+    });
+
+    // Real-time Filtering Engine Hooks
+    document.getElementById('homeSearchInput').addEventListener('input', (e) => {
+        searchFilter = e.target.value;
+        renderActiveViews();
+    });
+
+    // Boot Command
+    initDatabase();
 </script>
 </body>
 </html>
